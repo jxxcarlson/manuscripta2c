@@ -1,0 +1,21 @@
+.source-document {
+  font-size: 1.00rem;
+  line-height: 1.35rem;
+  height: calc(100% - 0px);
+  width: 100%;
+  overflow: scroll;
+  white-space: pre-line;
+}
+
+.info {
+  margin-left:8px;
+  height:18px;
+  baseline-shift: -4px;
+
+}
+
+.label-row {
+  display: inline-block;
+  padding-top:10px;
+  padding-bottom: -10px;
+}

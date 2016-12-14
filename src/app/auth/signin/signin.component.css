@@ -1,0 +1,53 @@
+input[type=text], input[type=password] {
+
+  display: inline-block;
+  position:relative;
+  left: 30px;
+  background-color: #eee;
+  margin-bottom: 18px;
+  height:2rem;
+
+}
+
+label {
+
+  display:  inline-block;
+  position:relative;
+  width:50px;
+  left: 0px;
+  margin-bottom: 18px;
+
+}
+
+input[type=button], input[type=text], input[type=password]
+{
+  border: 0;
+  border-radius:5px;
+  font-family: Sansation,Arial;
+}
+
+input[type=button]
+{
+  background-color: #1E1E1E;
+  color: #979797;
+  height: 24px;
+  width: 103px;
+  color: #bbbbbb;
+  text-transform:uppercase;
+  box-shadow:-1px 2px #6E6B6A inset;
+}
+
+p {
+
+  margin-top: -15px;
+
+}
+
+small {
+
+  margin-top: -15px;
+  margin-bottom: 15px;
+  color: red;
+}
+
+/* http://stackoverflow.com/questions/7095895/style-input-elements-css  */

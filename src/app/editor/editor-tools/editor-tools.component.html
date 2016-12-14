@@ -1,0 +1,22 @@
+<div class="editor-tools">
+
+  <div class="button-row">
+    <button><a [routerLink]="['/newdocument']">New</a></button>
+    <button
+      style="color:white"
+      (click)="togglePublic()"
+      [style.background-color]="(publicColor$ | async)"
+    >{{ publicTitle$ | async }}</button>
+  </div>
+
+  <div class="button-row">
+    <button>Check out</button> <button>Settings</button>
+  </div>
+
+  <div class="button-row">
+    <button style="width:60px;"> Move </button>
+    <button style="width:60px;" (click)="moveSubdocument('move_up')">Up</button>
+    <button style="width:60px;" (click)="moveSubdocument('move_down')">Down</button>
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+
+/** @import 'app/vendor/css/font-awesome.min.css'; **/
+@import './app/vendor/semantic.min.css';
+@import './app/vendor/foundation-potion.css';
+@import './app/vendor/coderay.css';
+@import './app/vendor/extras.css';
+
+
+form.ui.segment.form {
+  background-color: #F1F9FF;
+  margin-top: 2em;
+}
+
+form.form:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+
+.meta {
+  color: #9A9A9A
+}
+
+
+
+ul.ui.list li:before {
+  content: '';
+}
+
+

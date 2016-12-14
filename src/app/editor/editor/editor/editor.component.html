@@ -1,0 +1,44 @@
+
+<div class="ui centered grid container">
+
+  <div class="four wide column">
+
+      <!--
+        <app-search-scope-control></app-search-scope-control>
+      -->
+
+    <div style="">
+      <searchbar></searchbar>
+
+      <editor-tools></editor-tools>
+
+      <document-list> </document-list>
+    </div>
+
+  </div>
+
+  <div class="six wide column">
+    <div [textPageHeight]>
+      <div style="margin-bottom:8px;">
+        <button (click)="updateAndRenderText()">Update (ESC)</button>
+        <div class="label-row">
+          <span class="info">ID: {{ ( activeDocument$ | async )?.id }}</span>
+          <span class="info"> WC: {{ wordCount}}</span>
+        </div>
+      </div>
+      <textarea class="source-document"
+                id="text_input"
+                (keyup.escape)="updateAndRenderText()"
+                (keyup)="handleKeyPress($event.target)"
+                [(ngModel)]="model.source_text" name="source_text"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="six wide column">
+    <app-document></app-document>
+  </div>
+
+</div>
+
+

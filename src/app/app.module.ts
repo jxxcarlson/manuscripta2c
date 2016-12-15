@@ -12,6 +12,12 @@ import { activeDocumentReducer } from './state-management/reducers/activeDocumen
 import { uistateReducer } from './state-management/reducers/uistate.reducer'
 import { userReducer } from './state-management/reducers/user.reducer'
 
+import { Store } from '@ngrx/store';
+import {compose} from '@ngrx/core/compose'
+import {combineReducers} from '@ngrx/store'
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+
 import {DocumentService} from './services/document.service';
 import {UserService} from './services/user.service';
 import {MailService} from './services/mailService'
@@ -76,13 +82,16 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     SearchModule,
     TextHelpersModule,
 
-    StoreModule.provideStore({
-      documents: documentsReducer,
-      activeDocument: activeDocumentReducer,
-      user: userReducer,
-      uistate: uistateReducer
-    })
+    StoreModule.provideStore(
+      compose(
+        localStorageSync(['userReducer'], true),
+        combineReducers
+      )({ documentsReducer, activeDocumentReducer, userReducer, uistateReducer})
+      )
+
+
   ],
+
   providers: [
     QueryParser, Constants,
     DocumentService, UserService,

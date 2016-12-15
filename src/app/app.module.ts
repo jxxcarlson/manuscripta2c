@@ -89,12 +89,14 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
       uistate: uistateReducer
     }),
 
+    /**
     StoreModule.provideStore(
       compose(
         localStorageSync(['userReducer'], true),
         combineReducers
       )({ documentsReducer, activeDocumentReducer, userReducer, uistateReducer})
       )
+     **/
 
 
   ],

@@ -82,21 +82,17 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     SearchModule,
     TextHelpersModule,
 
-    StoreModule.provideStore({
-      documents: documentsReducer,
-      activeDocument: activeDocumentReducer,
-      user: userReducer,
-      uistate: uistateReducer
-    }),
-
-    /**
     StoreModule.provideStore(
       compose(
-        localStorageSync(['userReducer'], true),
+        localStorageSync(['user', 'activeDocumentReducer', 'documentsReducer', 'uistateReducer'], true),
         combineReducers
-      )({ documentsReducer, activeDocumentReducer, userReducer, uistateReducer})
-      )
-     **/
+      )({
+        documents: documentsReducer,
+        activeDocument: activeDocumentReducer,
+        user: userReducer,
+        uistate: uistateReducer
+      })
+    )
 
 
   ],

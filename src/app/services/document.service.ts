@@ -175,8 +175,9 @@ export class DocumentService {
       .flatMap( token => this.http.post(url, Object.assign(params, {token: token}))
         .map((res) => res.json())
         .do(payload => [
-          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']})
-          // this.select(payload['document'])
+          console.log(`RESPONSE TO CREATE DOCUMENT: ${payload}`),
+          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']}),
+          this.select(payload['document'])
         ])
       ).subscribe()
   }

@@ -62,9 +62,10 @@ export class NewDocumentComponent implements OnInit {
 
   submit() {
 
-    var position: string
+    var position: string = 'null'
 
-    this.model.above == true ? position = 'above' : position = 'below'
+    if (this.model.above) { position = 'above' }
+    if (this.model.below) { position = 'below' }
 
     console.log(`MODEL: ${JSON.stringify(this.model)}`)
 

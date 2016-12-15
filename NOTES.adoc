@@ -1,0 +1,39 @@
+----
+
+├── UNMET PEER DEPENDENCY @angular/compiler@2.3.0
+├── UNMET PEER DEPENDENCY @angular/compiler-cli@2.3.0
+├── UNMET PEER DEPENDENCY @angular/core@2.3.0
+├── ngrx-store-localstorage@0.1.5 
+├── UNMET PEER DEPENDENCY rxjs@5.0.0-beta.12
+└── UNMET PEER DEPENDENCY zone.js@0.6.26
+
+npm WARN @angular/core@2.3.0 requires a peer of rxjs@5.0.0-rc.4 but none was installed.
+npm WARN @angular/core@2.3.0 requires a peer of zone.js@^0.7.2 but none was installed.
+npm WARN @angular/http@2.3.0 requires a peer of rxjs@5.0.0-rc.4 but none was installed.
+npm WARN @angular/router@3.3.0 requires a peer of rxjs@5.0.0-rc.4 but none was installed.
+npm WARN @ngtools/webpack@1.1.9 requires a peer of @angular/compiler-cli@2.2.3 but none was installed.
+npm WARN @ngtools/webpack@1.1.9 requires a peer of @angular/core@2.2.3 but none was installed.
+npm WARN codelyzer@1.0.0-beta.4 requires a peer of @angular/compiler@~2.2.0 but none was installed.
+npm WARN codelyzer@1.0.0-beta.4 requires a peer of @angular/core@~2.2.0 but none was installed.
+----
+
+
+----
+StoreModule.provideStore(
+      compose(
+        localStorageSync(['userReducer'], true),
+        combineReducers
+      )({ documentsReducer, activeDocumentReducer, userReducer, uistateReducer})
+      )
+----
+
+
+
+----
+   StoreModule.provideStore({
+      documents: documentsReducer,
+      activeDocument: activeDocumentReducer,
+      user: userReducer,
+      uistate: uistateReducer
+    })
+----

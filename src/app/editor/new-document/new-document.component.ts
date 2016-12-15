@@ -14,7 +14,11 @@ import {Router} from '@angular/router';
 export class NewDocumentComponent implements OnInit {
 
 
-  model = {title: ''}
+  model = {
+            title: '',
+            parentDocumentTitle: 'Foo',
+            siblingDocumentTitle: 'Bar'
+          }
 
   constructor(
               private store: Store<AppState>,

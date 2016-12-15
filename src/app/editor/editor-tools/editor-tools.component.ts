@@ -1,4 +1,4 @@
-import {Component, OnInit, state} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { User } from '../../state-management/interfaces/user.interface'
 import { AppState } from '../../state-management/interfaces/appstate.interface'
 
@@ -17,7 +17,8 @@ import {DocumentService} from '../../services/document.service'
 @Component({
   selector: 'editor-tools',
   templateUrl: './editor-tools.component.html',
-  styleUrls: ['./editor-tools.component.css']
+  styleUrls: ['./editor-tools.component.css'],
+  encapsulation: ViewEncapsulation.Native // .None, .Native, .Emulated
 })
 export class EditorToolsComponent implements OnInit {
 

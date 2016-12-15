@@ -91,6 +91,14 @@ export class DocumentService {
 
   select(document: Document) {
 
+    if (document == undefined ) {
+
+      console.log("Tried to **select**, the argument 'document' was undefined")
+
+      return
+
+    }
+
     if (document.rendered_text == undefined) {
 
       let url = `${this.apiRoot}/documents/${document.id}`
@@ -159,14 +167,16 @@ export class DocumentService {
 
   createDocument(params) {
 
+    console.log(`createDocument: params = ${JSON.stringify(params)}`)
+
     let url = `${this.apiRoot}/documents`
 
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.post(url, Object.assign(params, {token: token}))
         .map((res) => res.json())
         .do(payload => [
-          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']}),
-          this.select(payload['document'])
+          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']})
+          // this.select(payload['document'])
         ])
       ).subscribe()
   }

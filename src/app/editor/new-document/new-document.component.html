@@ -16,25 +16,20 @@
         >
         <br>
         <br>
-        <button style="margin-left:50px;" (click)="submit()">Create</button>
+        <button style="margin-left:53px;" (click)="submit()">Create</button>
         <br>
-        <button style="margin-left:50px;margin-top:8px;"><a [routerLink]="['/edit']">Cancel</a></button>
+        <button style="margin-left:53px;margin-top:8px;"><a [routerLink]="['/edit']">Cancel</a></button>
 
         <br><br><br><br>
         <div>
-          <input type="radio" class="radio" name="foo" [checked]="false">
-          <label>Make child of:</label>
-          <input type="text" class="text" style="width: 410px;"
-                 [(ngModel)]="model.parentDocumentTitle" name="title"
-          >
+          <input type="checkbox" class="radio" name="child" [checked]=false  [(ngModel)]="model.child">
+          <label>Make new document a child of {{ (activeDocument$ | async)?.title }} </label>
 
           <br><br><br>
-          <label>Put above</label>
-          (above) <input type="radio" class="radio" name="foo" [checked]="false">
-          (below) <input type="radio" class="radio" name="foo" [checked]="true">
-          <input type="text" class="text"
-                 [(ngModel)]="model.siblingDocumentTitle" name="title"
-          >
+          <label>Or put new document above</label>
+          (above) <input type="radio" class="radio" name="position" [checked]=false [(ngModel)]="model.above">
+          (below) <input type="radio" class="radio" name="position" [checked]=false [(ngModel)]="model.below">
+          <label>{{ (activeDocument$ | async)?.title }} </label>
         </div>
 
       </div>

@@ -12,7 +12,7 @@ export class SearchScopeControlComponent  {
   options = [
     new Options(1, 'My docs' ),
     new Options(2, 'Other' ),
-    new Options(23, 'All' ),
+    new Options(3, 'All' ),
   ];
 
   getValue(optionid) {

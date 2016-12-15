@@ -23,14 +23,29 @@
         <br><br><br><br>
         <div>
           <input type="checkbox" class="radio" name="child" [checked]=false  [(ngModel)]="model.child">
-          <label>Make new document a child of {{ (activeDocument$ | async)?.title }} </label>
+          <span>Make the new document a child of</span> <label>{{ (activeDocument$ | async)?.title }} </label>
 
-          <br><br><br>
-          <label>Or put new document above</label>
-          (above) <input type="radio" class="radio" name="position" [checked]=false [(ngModel)]="model.above">
-          (below) <input type="radio" class="radio" name="position" [checked]=false [(ngModel)]="model.below">
-          <label>{{ (activeDocument$ | async)?.title }} </label>
+          <div *ngIf="hasParent">
+            <br><br>
+            <span>Or</span>
+            <br><br>
+            <span>Make the new document a child of</span> <label>{{ (activeDocument$ | async)?.links?.parent?.title }} </label>
+            <br>
+            <span style="margin-top:0.2rem;">And put it</span>
+            <span *ngFor="let option of options">
+              <input type="radio" class="radio" name="pos" [checked]="option.id == selectedOption.id" (click)="getValue(option.id)" value= {{option.id}}>{{option.name}}
+            </span>
+            <label>{{ (activeDocument$ | async)?.title }} </label>
+          </div>
+
         </div>
+
+        <!--
+          <pre>{{model| json }}</pre>
+
+          Has parent: {{hasParent}}
+
+          -->
 
       </div>
 

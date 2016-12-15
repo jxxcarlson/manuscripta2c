@@ -17,12 +17,22 @@ export class NewDocumentComponent implements OnInit {
 
   activeDocument$: Observable<Document>
 
+  hasParent: boolean;
+
+  selectedOption:Options = new Options(1, 'null');
+
+  options = [
+    new Options(2, 'above' ),
+    new Options(3, 'below' ),
+  ];
+
   model = {
             title: '',
             child: false,
-            above: false,
-            below: false
+            position: 'null'
           }
+
+          // position = 'null'|'above'|'below'
 
   constructor(
               private store: Store<AppState>,
@@ -60,18 +70,19 @@ export class NewDocumentComponent implements OnInit {
     return document.links.parent.id
   }
 
+  getValue(optionid) {
+    this.selectedOption = this.options.filter((item)=> item.id == optionid)[0];
+    this.model.position = this.selectedOption.name
+  }
+
   submit() {
 
-    var position: string = 'null'
-
-    if (this.model.above) { position = 'above' }
-    if (this.model.below) { position = 'below' }
 
     console.log(`MODEL: ${JSON.stringify(this.model)}`)
 
     let params = {
       title: this.model.title,
-      options: {"child": this.model.child, "position": position},
+      options: {"child": this.model.child, "position": this.model.position},
       current_document_id: 0,
       parent_document_id: 0
     }
@@ -96,7 +107,14 @@ export class NewDocumentComponent implements OnInit {
 
   ngOnInit() {
 
+    this.activeDocument$.take(1).subscribe(activeDocument => this.hasParent = !(this.parentId(activeDocument) == 0))
+
   }
 
 
+}
+
+
+export class Options {
+  constructor(public id: number, public name: string) { }
 }

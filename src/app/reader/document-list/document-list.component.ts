@@ -26,6 +26,8 @@ export class DocumentListComponent implements OnInit {
   parentId:string = '-1'
   parentTitle: string = '-'
 
+  tocInset:string = "300"
+
   documentListTitle:string = 'Documents'
 
   constructor( private store: Store<AppState>, private documentService: DocumentService) {

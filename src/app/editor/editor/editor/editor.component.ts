@@ -44,6 +44,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
               private documentService: DocumentService,
               private cd: ChangeDetectorRef) {
 
+
+
     console.log('CONSTRUCT EDITOR')
     this.navbarService = navbarService
     this.store = store
@@ -53,6 +55,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     //  .subscribe( (activeDocument: Observable<Document>) => this.activeDocument$ = activeDocument )
 
   }
+
+  ngAfterViewInit() : void {   }
 
 
   updateAndRenderText() {

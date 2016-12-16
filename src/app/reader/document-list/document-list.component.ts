@@ -90,7 +90,7 @@ export class DocumentListComponent implements OnInit {
 
   subdocumentSymbol(document:Document): string {
 
-      return document.has_subdocuments ? '>>' : ''
+      return document.has_subdocuments ? '•' : ''
 
   }
 

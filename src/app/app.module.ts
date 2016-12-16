@@ -100,8 +100,9 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
   providers: [
     QueryParser, Constants,
     DocumentService, UserService,
-    MailService, WindowRef
+    MailService, WindowRef,
   ],
+
   bootstrap: [AppComponent, [ ]]
 })
 export class AppModule { }

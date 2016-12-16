@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {HomeComponent} from "./home.component";
 import {AuthorizationModule} from "../../auth/authorization.module";
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {AuthorizationModule} from "../../auth/authorization.module";
   imports: [
 
       AppRoutingModule,
-      AuthorizationModule
+      AuthorizationModule,
+      CommonModule
     ],
 
   providers: [

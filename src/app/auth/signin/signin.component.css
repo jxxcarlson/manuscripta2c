@@ -1,3 +1,9 @@
+.auth-button-1 {
+
+  background-color: cornflowerblue;
+  color: white;
+}
+
 input[type=text], input[type=password] {
 
   display: inline-block;
@@ -26,13 +32,12 @@ input[type=button], input[type=text], input[type=password]
   font-family: Sansation,Arial;
 }
 
-input[type=button]
+.mybutton1
 {
-  background-color: #1E1E1E;
-  color: #979797;
-  height: 24px;
-  width: 103px;
-  color: #bbbbbb;
+  background-color: #444;
+  color: #eee;
+  height: 36px;
+  width: 250px;
   text-transform:uppercase;
   box-shadow:-1px 2px #6E6B6A inset;
 }

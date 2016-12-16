@@ -39,6 +39,25 @@ export class AuthorizationService {
       )
   }
 
+  signup(username: string, email: string, password: string) {
+
+    var parameter ={username: username, email: email, password: password}
+
+    var url = `${this.constants.apiRoot}/users/create`
+
+    return this.http.post(url, parameter)
+      .map((res:Response) => res.json())
+      .subscribe(payload => [
+          this.store.dispatch({
+            type: AUTHORIZE_USER,
+            payload: { username: username, password: password,
+              id: payload.user_id, token: payload.token,
+              signedIn: payload.token != null }
+          })
+        ]
+      )
+  }
+
   signout() {
 
     var nullUser: User = {id: -1, username: 'nobody', password: '', token: '', signedIn: false }

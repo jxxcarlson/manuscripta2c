@@ -14,6 +14,7 @@ import { Observable} from 'rxjs/Rx';
 export class HomeComponent implements OnInit {
 
   user$: Observable<User>
+  signingUp: boolean = false;
 
   constructor(private navbarService: NavbarService,
               private userStore: Store<AppState>) {
@@ -23,7 +24,14 @@ export class HomeComponent implements OnInit {
 
   }
 
+  toggleSignup() {
+
+    this.signingUp = !this.signingUp
+  }
+
   ngOnInit() {
+
+    this.user$ = this.userStore.select(state => state.user)
 
     this.navbarService.updateUIState('home')
 

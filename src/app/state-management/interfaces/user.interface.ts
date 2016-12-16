@@ -1,9 +1,10 @@
 export interface User {
-  id: number;
-  username: string;
+  id: number
+  username: string
   password: string
-  token: string;
-  signedIn: boolean;
+  email: string
+  token: string
+  signedIn: boolean
 };
 
-export const intialUser:User = {id: -1, username: 'nobody', password: '', token: '', signedIn: false}
+export const intialUser:User = {id: -1, username: 'nobody', email: 'nobody@nowhere.io', password: '', token: '', signedIn: false}

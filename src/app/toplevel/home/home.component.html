@@ -28,9 +28,18 @@
   <div class="one wide column"></div>
 
   <div class="six wide column">
-    <signin></signin>
+    <signin [hidden]="signingUp"></signin>
+    <br><br>
+    <span
+      [hidden]="signingUp"
+      (click)="toggleSignup()"
+    >
+      <button class="auth-button-1">Sign up</button>
+      if you need an account
+    </span>
+    <signup [hidden]="!signingUp"></signup>
 
-    <signup></signup>
+    <p style="margin-top:20px;" [hidden]="!signingUp"  (click)="toggleSignup()"><button class="auth-button-1">Cancel</button></p>
 
 
     <div style="margin-top:60px;width:250px; background-color:#eee; padding:20px;">

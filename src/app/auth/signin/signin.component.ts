@@ -24,16 +24,16 @@ export class SigninComponent implements OnInit {
 
 
   constructor(private _fb: FormBuilder,
-              private signinService: AuthorizationService,
+              private authorizationService: AuthorizationService,
               private userStore: Store<AppState>
   ) {
 
-    this.signinService = signinService
+    this.authorizationService = authorizationService
   }
 
   signOut() {
 
-    this.signinService.signout()
+    this.authorizationService.signout()
   }
 
 
@@ -66,7 +66,7 @@ export class SigninComponent implements OnInit {
 
   save(model: User, isValid: boolean) {
     this.submitted = true;
-    this.signinService.signin(model.username, model.password)
+    this.authorizationService.signin(model.username, model.password)
     //  .subscribe( (x) => console.log(`Response: ${x}`))
   }
 

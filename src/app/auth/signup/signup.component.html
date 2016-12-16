@@ -1,3 +1,49 @@
-<p>
-  signup works!
-</p>
+<h2>Sign up</h2>
+
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
+
+  <div class="form-group">
+    <label for="">Username</label>
+    <input type="text" class="form-control" formControlName="username">
+    <p><small class="advice" [hidden]="myForm.controls.username.valid || (myForm.controls.username.pristine && !submitted)" class="text-danger"> -
+      Username is required (minimum 5 characters).
+    </small></p>
+    <!--<pre class="margin-20">{{ myForm.controls.name.errors | json }}</pre>-->
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input style="margin-left:35px;" type="text" class="form-control" formControlName="email">
+    <p><small class="advice" [hidden]="myForm.controls.email.valid || (myForm.controls.email.pristine && !submitted)" class="text-danger">
+      Email is not in correct form.
+    </small></p>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="">Password</label>
+    <input type="password" class="form-control" formControlName="password">
+     <p><small class="advice" [hidden]="myForm.controls.password.valid || (myForm.controls.password.pristine && !submitted)" class="text-danger">
+      Password is required (minimum 5 characters).
+  </small></p>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="">Password again</label>
+    <input type="password" class="form-control" style="width:120px;" formControlName="password2">
+    <p><small class="advice" [hidden]="myForm.controls.password2.valid || (myForm.controls.password2.pristine && !submitted)" class="text-danger">
+      Password is required (minimum 5 characters).
+    </small></p>
+  </div>
+
+
+
+
+  <br>
+  <button type="submit" style="width:240px; height:35px;" class="btn btn-default" class="sign-in-large" class="auth-button-1">SIGN UP</button>
+
+
+</form>
+

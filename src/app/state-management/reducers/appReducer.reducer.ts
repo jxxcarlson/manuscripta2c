@@ -9,6 +9,7 @@ import { AppState } from '../interfaces/appstate.interface'
 import {intialUser} from '../interfaces/user.interface'
 import { ActionReducer, Action } from '@ngrx/store';
 
+const process = (document: Document) => Object.assign(document, {rendered_text: document.rendered_text.replace(/<a href="#/g, '<a pageScroll href="#')})
 
 
 const initialAppState = {
@@ -24,12 +25,12 @@ export const appReducer: ActionReducer<AppState> =
       case SET_DOCUMENTS_AND_SELECT:
         return Object.assign(state,
           {documents: action.payload},
-          {activeDocument: action.payload[0]})
+          {activeDocument: process(action.payload[0])})
       case ADD_DOCUMENT_AND_SELECT:
         return Object.assign(state,
           {
-            activeDocument: action.payload,
-            documents: [...state.documents, action.payload]
+            activeDocument: process(action.payload),
+            documents: [...state.documents, process(action.payload)]
           }
         )
       default:

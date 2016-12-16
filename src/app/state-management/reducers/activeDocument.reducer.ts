@@ -7,6 +7,8 @@ export const UPDATE_DOCUMENT =  'UPDATE_DOCUMENT'
 import { Document } from '../interfaces/document.interface'
 import { ActionReducer, Action } from '@ngrx/store';
 
+const process = (document: Document) => Object.assign(document, {rendered_text: document.rendered_text.replace(/<a href="#/g, '<a pageScroll href="#')})
+
 const initialDocument: Document = {
 
   id: 0,
@@ -24,9 +26,9 @@ export const activeDocumentReducer: ActionReducer<Document> = (state: Document =
 
   switch (action.type) {
     case SELECT_DOCUMENT:
-      return action.payload;
+      return process(action.payload);
     case UPDATE_DOCUMENT:
-      return Object.assign (state, action.payload)
+      return Object.assign (state, process(action.payload))
     default:
       return state;
   }

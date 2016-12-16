@@ -11,6 +11,8 @@ export class DocumentListItemComponent implements OnInit {
 
   @Input() document: Document
   @Input() active: boolean
+  @Input() subdocumentSymbol: string
+
 
   // document_title = this.truncateString(document.title, 30)
   // document_title = document.title
@@ -24,7 +26,9 @@ export class DocumentListItemComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

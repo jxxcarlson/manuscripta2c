@@ -87,5 +87,19 @@ export class DocumentListComponent implements OnInit {
 
   }
 
+  /*
+  hasSubdocuments(document): boolean {
+
+    return document.has_subdocuments
+  }
+  */
+
+  subdocumentSymbol(document:Document): string {
+
+      return document.has_subdocuments ? '>' : ''
+
+  }
+
+
 
 }

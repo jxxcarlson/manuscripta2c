@@ -53,7 +53,6 @@ import {DocumentListModule} from './reader/document-list/document-list.module'
 import {SearchModule} from './search/search.module';
 import {TextHelpersModule} from './text_helpers/text_helpers.module';
 import { NewDocumentComponent } from './editor/new-document/new-document.component';
-import { SignupComponent } from './auth/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -66,7 +65,6 @@ import { SignupComponent } from './auth/signup/signup.component'
     SearchScopeControlComponent,
     SettingsComponent,
     NewDocumentComponent,
-    SignupComponent
   ],
 
   imports: [

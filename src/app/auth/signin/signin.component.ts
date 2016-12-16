@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../state-management/interfaces/user.interface'
 import { AppState } from '../../state-management/interfaces/appstate.interface';
-import { SigninService } from '../authorization.service'
+import { AuthorizationService } from '../authorization.service'
 import { Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
 
 
   constructor(private _fb: FormBuilder,
-              private signinService: SigninService,
+              private signinService: AuthorizationService,
               private userStore: Store<AppState>
   ) {
 

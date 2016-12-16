@@ -4,14 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Internal to signin directory:
-import { SigninService } from './authorization.service'
+import { AuthorizationService } from './authorization.service'
 import { SigninComponent } from "./signin/signin.component";
+import { SignupComponent } from "./signup/signup.component";
 
 @NgModule({
 
   declarations: [
 
-    SigninComponent
+    SigninComponent,
+    SignupComponent
   ],
 
   imports: [
@@ -24,13 +26,14 @@ import { SigninComponent } from "./signin/signin.component";
 
   providers: [
 
-    SigninService
+    AuthorizationService
 
   ],
 
   exports: [
 
-    SigninComponent
+    SigninComponent,
+    SignupComponent
   ]
 
 })

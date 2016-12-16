@@ -13,7 +13,7 @@ import { AUTHORIZE_USER } from '../state-management/reducers/user.reducer'
 
 
 @Injectable()
-export class SigninService {
+export class AuthorizationService {
 
   constructor (private http: Http,
                private constants : Constants,

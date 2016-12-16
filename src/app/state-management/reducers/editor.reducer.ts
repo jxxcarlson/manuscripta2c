@@ -6,6 +6,7 @@ export const SET_EDIT_TEXT =  'SET_EDIT_TEXT'
 
 import { Editor } from '../interfaces/editor.interface'
 import { ActionReducer, Action } from '@ngrx/store';
+import {Document} from '../interfaces/document.interface'
 
 const process = (document: Document) => Object.assign(document, {rendered_text: document.rendered_text.replace(/<a href="#/g, '<a pageScroll href="#')})
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Document } from '../../shared/document.model'
 import { DocumentService } from '../../services/document.service'
 
+import {PageScrollInstance, PageScrollService, EasingLogic} from 'ng2-page-scroll';
+
 import { Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 interface AppState {
@@ -35,10 +37,14 @@ export class DocumentComponent implements OnInit {
   documents: Observable<Document[]>
 
   constructor(private store: Store<AppState>,
-              private documentService: DocumentService ) {
+              private documentService: DocumentService,
+              private pageScrollService: PageScrollService) {
 
     store.select(s => s.activeDocument)
       .subscribe( activeDocument => this.activeDocument = activeDocument || this.defaultDocument)
+
+    // let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.activeDocument.rendered_text);
+    // this.pageScrollService.start(pageScrollInstance);
 
   }
 

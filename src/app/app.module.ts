@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {enableProdMode} from '@angular/core';
 
+
 import {Ng2PageScrollModule} from 'ng2-page-scroll'
 
 import {AppRoutingModule} from './app-routing.module'

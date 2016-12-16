@@ -15,6 +15,8 @@ import { SET_DOCUMENTS_AND_SELECT, ADD_DOCUMENT_AND_SELECT } from '../state-mana
 import { SELECT_DOCUMENT, UPDATE_DOCUMENT } from '../state-management/reducers/activeDocument.reducer'
 import {SET_EDIT_TEXT} from '../state-management/reducers/editor.reducer'
 
+import {Ng2PageScrollModule} from 'ng2-page-scroll'
+
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
 

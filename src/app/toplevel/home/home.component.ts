@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   user$: Observable<User>
   signingUp: boolean = false;
+  signedIn$: Observable<boolean>
 
   constructor(private navbarService: NavbarService,
               private userStore: Store<AppState>) {
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.user$ = this.userStore.select(state => state.user)
+    this.signedIn$ = this.userStore.select(state => state.user.signedIn)
 
     this.navbarService.updateUIState('home')
 

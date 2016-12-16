@@ -20,7 +20,7 @@
   </div>
 
 
-
+<!-- [hidden]="signingUp" [hidden]="!(( user$ | async )?.signedIn)"-->
   <!--
   <p>This app is a rewrite (in progress) of <a href="http://www.manuscripta.io">Manuscripta.io</a> in
     Angular2 + ngrx.  Still in a primitive state, but we are working on it.</p>
@@ -31,11 +31,10 @@
     <signin [hidden]="signingUp"></signin>
     <br><br>
     <span
-      [hidden]="signingUp"
+      [hidden]="signingUp || (signedIn$ | async)"
       (click)="toggleSignup()"
     >
-      <button class="auth-button-1">Sign up</button>
-      if you need an account
+      <button class="auth-button-1">Sign up</button> if you need an account
     </span>
     <signup [hidden]="!signingUp"></signup>
 

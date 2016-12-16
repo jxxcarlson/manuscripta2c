@@ -42,8 +42,8 @@ export class SigninComponent implements OnInit {
     this.user$ = this.userStore.select(state => state.user)
 
     this.myForm = this._fb.group({
-      username: ['', [<any>Validators.required, <any>Validators.minLength(5)]],
-      password: ['', [<any>Validators.required, <any>Validators.minLength(5)]],
+       username: ['', [<any>Validators.required, <any>Validators.minLength(0)]],
+       password: ['', [<any>Validators.required, <any>Validators.minLength(0)]],
 
     });
 

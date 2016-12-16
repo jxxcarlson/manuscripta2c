@@ -15,9 +15,9 @@
       <div class="form-group">
         <label for="">Username</label>
         <input type="text" class="form-control" formControlName="username">
-        <p><small class="advice" [hidden]="myForm.controls.username.valid || (myForm.controls.username.pristine && !submitted)" class="text-danger">
+        <!-- <p><small class="advice" [hidden]="myForm.controls.username.valid || (myForm.controls.username.pristine && !submitted)" class="text-danger"> -
           Username is required (minimum 5 characters).
-        </small></p>
+        </small></p>  -->
         <!--<pre class="margin-20">{{ myForm.controls.name.errors | json }}</pre>-->
       </div>
 
@@ -25,9 +25,9 @@
       <div class="form-group">
         <label for="">Password</label>
         <input type="password" class="form-control" formControlName="password">
-        <p><small class="advice" [hidden]="myForm.controls.password.valid || (myForm.controls.password.pristine && !submitted)" class="text-danger">
+        <!-- <p><small class="advice" [hidden]="myForm.controls.password.valid || (myForm.controls.password.pristine && !submitted)" class="text-danger">
           Password is required (minimum 5 characters).
-      </small></p>
+      </small></p>  -->
         <!--<pre class="margin-20">{{ myForm.controls.name.errors | json }}</pre>-->
       </div>
       <br>

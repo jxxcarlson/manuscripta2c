@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DocumentService } from '../services/document.service'
 import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/take'
@@ -8,7 +8,8 @@ import {AppState} from '../state-management/interfaces/appstate.interface'
 @Component({
   selector: 'searchbar',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  encapsulation: ViewEncapsulation.Native // .None, .Native, .Emulated
 })
 export class SearchComponent implements OnInit {
 

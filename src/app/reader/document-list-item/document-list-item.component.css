@@ -1,12 +1,18 @@
 li {
 
   font-size: 0.95rem;
-  margin-bottom:0.15rem;
-  height:30px;
-  padding: 7px;
-  width: 1000%;
+  margin-bottom:0.0rem;
+  height:1.5rem;
+  padding-left: 0.3rem;
+  padding-top: 0.85rem;
+  width: 100%;
   color: cornflowerblue;
-  font-weight: 600;
+  font-weight: 500;
 
 }
 
+.button-row {
+
+  font-size: 1rem;
+  font-weight: 400;
+}

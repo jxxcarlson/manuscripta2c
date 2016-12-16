@@ -1,20 +1,28 @@
 
 .document-list {
 
-  background-color: #efefef; padding-left:10px; margin-right:27px;
+  background-color: #efefef; padding:10px; margin-right:27px;
 
 }
 
+.document-list-inner {
 
+  overflow: scroll;
+}
+
+h1 {
+
+  font-size: 1.5rem;
+  font-weight:400;
+  margin-top:0;
+}
 
 ul {
   list-style-type: none;
-
   padding-left:0;
   margin-top: -0.35rem;
 }
 
-h1 { font-size: 1.5em; }
 
 /**
 

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import {NavbarService} from './navbar.service'
 import {DocumentService} from '../../services/document.service'
@@ -14,7 +14,8 @@ import { uistateReducer, initialState } from '../../state-management/reducers/ui
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  encapsulation: ViewEncapsulation.Native
 })
 export class NavbarComponent implements OnInit {
 

@@ -6,14 +6,17 @@
     </a>
     -->
     <div class="header item borderless">
-      <h1>
-        Manuscripta.io
-      </h1>
 
-      <div style="display: inline-block; margin-left:40px;">
-        <span class="nav-item" ><a [style.color]="textColor('read',activeNavSection$)" [routerLink]="['read']">Read</a></span>
-        <span class="nav-item"><a [style.color]="textColor('edit',activeNavSection$)" [routerLink]="['edit']">Write</a></span>
-        <span class="nav-item"><a [style.color]="textColor('media',activeNavSection$)" [routerLink]="['images']">Media</a></span>
+
+      <div style="display: inline-block; float: left; margin-left:40px; margin-top: -17px;">
+
+        <h1 style="">
+          Manuscripta.io
+        </h1>
+
+        <span class="nav-item" ><a class="navlink" [style.color]="textColor('read',activeNavSection$)" [routerLink]="['read']">Read</a></span>
+        <span class="nav-item"><a class="navlink" [style.color]="textColor('edit',activeNavSection$)" [routerLink]="['edit']">Write</a></span>
+        <span class="nav-item"><a class="navlink" [style.color]="textColor('media',activeNavSection$)" [routerLink]="['images']">Media</a></span>
         <!--<button style="background-color: darkred; color: white; border: none; height: 25px; margin-bottom: 8px; margin-left: 20px; padding-left:10px; padding-right:14px;" (click)="doIt()">Test</button> -->
         <!--<span class="" style="color:white; margin-left:50px;">  NS = {{ activeNavSection$ }} </span>  -->
       </div>
@@ -21,11 +24,11 @@
       <!-- <searchbar style="width:100px;"></searchbar> -->
 
 
-      <div style="display: inline-block; float:right; margin-right:40px;padding-top:8px;">
-        <span class="nav-item"><a [style.color]="textColor('settings',activeNavSection$)" [routerLink]="['settings']">Settings</a></span>
+      <div style="display: inline-block; float:right; margin-right:40px;padding-top:10px;">
+        <span class="nav-item"><a class="navlink" [style.color]="textColor('settings',activeNavSection$)" [routerLink]="['settings']">Settings</a></span>
         <span class="mybutton" (click)="getRandomDocuments()"> Explore</span>
-        <span class="nav-item"><a [style.color]="textColor('home',activeNavSection$)" [routerLink]="['home']">Home</a></span>
-        <span class="nav-item"><a [style.color]="textColor('about',activeNavSection$)" [routerLink]="['about']">About</a></span>
+        <span class="nav-item"><a class="navlink" [style.color]="textColor('home',activeNavSection$)" [routerLink]="['home']">Home</a></span>
+        <span class="nav-item"><a class="navlink" [style.color]="textColor('about',activeNavSection$)" [routerLink]="['about']">About</a></span>
           <!-- <span><a class="nav-item" routerLink="/about" routerLinkActive="nav-item-active">About</a></span> -->
       </div>
 

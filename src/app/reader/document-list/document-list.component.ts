@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 import { Document } from '../../shared/document.model'
 import { Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
@@ -15,7 +15,8 @@ interface AppState {
 @Component({
   selector: 'document-list',
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.css']
+  styleUrls: ['./document-list.component.css'],
+  encapsulation: ViewEncapsulation.Native
 })
 export class DocumentListComponent implements OnInit {
 

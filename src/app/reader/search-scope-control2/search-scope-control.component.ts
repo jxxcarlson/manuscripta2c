@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-search-scope-control',
   templateUrl: './search-scope-control.component.html',
-  styleUrls: ['./search-scope-control.component.css']
+  styleUrls: ['./search-scope-control.component.css'],
+  encapsulation: ViewEncapsulation.Native
 })
 export class SearchScopeControlComponent  {
 

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Document } from '../../shared/document.model'
 
 @Component({
   selector: 'document-list-item',
   templateUrl: './document-list-item.component.html',
   styleUrls: ['./document-list-item.component.css'],
+  encapsulation: ViewEncapsulation.Native
 })
 export class DocumentListItemComponent implements OnInit {
 

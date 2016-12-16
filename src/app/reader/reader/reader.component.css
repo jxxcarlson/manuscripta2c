@@ -6,18 +6,20 @@ button {
 
 }
 
+
 .button-row {
   display: inline-block;
   margin-top:-15px;
-  padding-top:10;
+  padding-top:10px;
   padding-bottom: 0.45em;
 }
 
-span, a {
+
+a, .reader-control  {
 
   color: cornflowerblue;
-  font-weight: bold;
+  font-weight: 500;
   margin-right: 8px;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 
 }

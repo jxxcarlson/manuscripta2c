@@ -60,7 +60,7 @@ export class AuthorizationService {
 
   signout() {
 
-    var nullUser: User = {id: -1, username: 'nobody', password: '', token: '', signedIn: false }
+    var nullUser: User = {id: -1, username: 'nobody', password: '', email: 'nobody@nowhere.io', token: '', signedIn: false }
 
     this.store.dispatch({type: AUTHORIZE_USER, payload: nullUser})
   }

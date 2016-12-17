@@ -9,10 +9,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import {Constants} from '../../../toplevel/constants'
 
-interface AppState {
-  documents: Document[],
-  activeDocument: Document
-}
+
 
 import {Editor} from '../../../state-management/interfaces/editor.interface'
 
@@ -30,6 +27,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   activeDocument$: Observable<Document>
   user$: Observable<User>
   documents: Observable<Document[]>
+  userOwnsActiveDocument$: Observable<boolean>
 
   model = { source_text: ''}
   wordCount: number
@@ -55,8 +53,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     this.activeDocument$ = store.select(state => state.activeDocument)
     this.user$ = store.select(state => state.user)
-    //store.select('activeDocument')
-    //  .subscribe( (activeDocument: Observable<Document>) => this.activeDocument$ = activeDocument )
+    this.userOwnsActiveDocument$ = store.select(state => state.user.id == state.activeDocument.owner_id)
 
   }
 

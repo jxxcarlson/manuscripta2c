@@ -7,4 +7,9 @@ export interface User {
   signedIn: boolean
 };
 
-export const intialUser:User = {id: -1, username: 'nobody', email: 'nobody@nowhere.io', password: '', token: '', signedIn: false}
+export const initialUser:User = {id: -1,
+  username: 'nobody',
+  email: 'nobody@nowhere.io',
+  password: '',
+  token: '',
+  signedIn: false}

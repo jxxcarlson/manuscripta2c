@@ -6,13 +6,13 @@ export const ADD_DOCUMENT_AND_SELECT =  'ADD_DOCUMENT_AND_SELECT'
 
 import { Document } from '../interfaces/document.interface'
 import { AppState } from '../interfaces/appstate.interface'
-import {intialUser} from '../interfaces/user.interface'
+import {initialUser} from '../interfaces/user.interface'
 import { ActionReducer, Action } from '@ngrx/store';
 
 
 
 const initialAppState = {
-  user: intialUser
+  user: initialUser
 }
 
 

@@ -30,23 +30,26 @@ export class ReaderComponent implements OnInit {
   activeDocument: Document
   documentId: string
 
+  apiRoot: string
   printUrl: string
   printerValid: boolean = false
 
   exportUrl: string
   exportValid: boolean = false
 
-  host: string = 'http://localhost:4200'
+  host: string = this.constants.host
 
   constructor(private store: Store<AppState>,
               private navbarService: NavbarService,
               private route: ActivatedRoute,
               private documentService: DocumentService,
               private mailService: MailService,
+              private constants : Constants,
               private router: Router) {
 
     this.store = store
     this.navbarService = navbarService
+    this.apiRoot = this.constants.apiRoot
 
     store.select(s => s.activeDocument)
       .subscribe( activeDocument => this.activeDocument = activeDocument)

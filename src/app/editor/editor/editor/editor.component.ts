@@ -2,7 +2,9 @@ import {Component, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit} from '@a
 import {NavbarService} from '../../../toplevel/navbar/navbar.service'
 import {EditorToolsComponent} from '../../editor-tools/editor-tools.component'
 import {DocumentService} from '../../../services/document.service'
+import {AppState} from '../../../state-management/interfaces/appstate.interface'
 import {Document} from '../../../state-management/interfaces/document.interface'
+import {User} from '../../../state-management/interfaces/user.interface'
 import { Observable, Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import {Constants} from '../../../toplevel/constants'
@@ -26,6 +28,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   private editorToolsComponent: EditorToolsComponent;
 
   activeDocument$: Observable<Document>
+  user$: Observable<User>
   documents: Observable<Document[]>
 
   model = { source_text: ''}
@@ -51,6 +54,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     this.store = store
 
     this.activeDocument$ = store.select(state => state.activeDocument)
+    this.user$ = store.select(state => state.user)
     //store.select('activeDocument')
     //  .subscribe( (activeDocument: Observable<Document>) => this.activeDocument$ = activeDocument )
 

@@ -121,5 +121,14 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   }
 
+  softDeleteDocument() {
+
+    console.log(`Soft delete ...`)
+
+    this.store
+      .take(1)
+      .subscribe((state) => this.documentService.delete(state.activeDocument.id, 'soft'))
+  }
+
 
 }

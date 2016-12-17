@@ -71,7 +71,7 @@ export class ReaderComponent implements OnInit {
       this.store
         .take(1)
         .subscribe((state) => [
-          this.documentService.printDocument(state.activeDocument.id, state.user.token,
+          this.documentService.printDocument(state.activeDocument.id,
             (payload) => [this.printUrl = payload, this.printerValid = true])
         ])
 
@@ -82,7 +82,7 @@ export class ReaderComponent implements OnInit {
     this.store
       .take(1)
       .subscribe((state) => [
-        this.documentService.exportDocumentToLaTex(state.activeDocument.id, state.user.token,
+        this.documentService.exportDocumentToLaTex(state.activeDocument.id,
           (payload) => [this.exportUrl = payload, this.exportValid = true])
       ])
   }

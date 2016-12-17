@@ -11,7 +11,7 @@ import {Constants} from '../toplevel/constants'
 import { QueryParser } from './queryparser.service'
 
 import { ADD_DOCUMENT, SET_DOCUMENTS } from '../state-management/reducers/documents.reducer'
-import { SET_DOCUMENTS_AND_SELECT, ADD_DOCUMENT_AND_SELECT } from '../state-management/reducers/appReducer.reducer'
+import { DELETE_ACTIVE_DOCUMENT, SET_DOCUMENTS_AND_SELECT, ADD_DOCUMENT_AND_SELECT } from '../state-management/reducers/appReducer.reducer'
 import { SELECT_DOCUMENT, UPDATE_DOCUMENT } from '../state-management/reducers/activeDocument.reducer'
 import {SET_EDIT_TEXT} from '../state-management/reducers/editor.reducer'
 
@@ -19,6 +19,8 @@ const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
 
 import {AppState} from '../state-management/interfaces/appstate.interface'
+
+const defaultCallback = (payload) => console.log(JSON.stringify(payload))
 
 
 @Injectable()
@@ -281,7 +283,7 @@ export class DocumentService {
 
   // Request a url for a print version of
   // the given the ID of document
-  printDocument(documentId: number, token: string, callback) {
+  printDocument(documentId: number,  callback) {
 
     let url = `${this.apiRoot}/printdocument/${documentId}`
 
@@ -293,7 +295,7 @@ export class DocumentService {
 
   }
 
-  exportDocumentToLaTex(documentId: number, token: string, callback) {
+  exportDocumentToLaTex(documentId: number,  callback) {
 
     let url = `${this.apiRoot}/exportlatex/${documentId}`
 
@@ -301,6 +303,25 @@ export class DocumentService {
       .flatMap( token => this.http.get(url, this.standardOptions(token))
         .map((res) => res.json()['tar_url'])
         .do(payload => callback(payload))
+      ).subscribe()
+
+  }
+
+  // (payload) => this.store.dispatch({type: DELETE_DOCUMENT, payload: document})
+
+
+
+  delete(documentId: number,
+         mode: string,  // mode = soft|hard|undelete
+         callback = () => this.store.dispatch({type: DELETE_ACTIVE_DOCUMENT, payload: ''})) {
+
+    let url = `${this.apiRoot}/documents/${documentId}?mode=${mode}`
+
+    this.store.select(state=> state.user.token)
+      .flatMap( token => this.http.delete(url, this.standardOptions(token))
+        .map((res) => res.json())
+        .do(payload => defaultCallback(payload))
+        .do(payload => callback())
       ).subscribe()
 
   }

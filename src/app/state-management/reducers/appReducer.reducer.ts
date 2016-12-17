@@ -2,11 +2,13 @@
 //
 export const SET_DOCUMENTS_AND_SELECT =  'SET_DOCUMENTS_AND_SELECT'
 export const ADD_DOCUMENT_AND_SELECT =  'ADD_DOCUMENT_AND_SELECT'
+export const DELETE_ACTIVE_DOCUMENT =  'DELETE_ACTIVE_DOCUMENT'
 
 
 import { Document } from '../interfaces/document.interface'
 import { AppState } from '../interfaces/appstate.interface'
-import {initialUser} from '../interfaces/user.interface'
+import {initialDocument} from '../interfaces/document.interface'
+import { User, initialUser } from '../interfaces/user.interface'
 import { ActionReducer, Action } from '@ngrx/store';
 
 
@@ -32,6 +34,17 @@ export const appReducer: ActionReducer<AppState> =
             documents: [...state.documents, action.payload]
           }
         )
+      case DELETE_ACTIVE_DOCUMENT:
+        var index = state.documents.indexOf(state.activeDocument)
+        if (index > -1) { state.documents.splice(index, 1) }
+        if (index > 0) {
+          state.activeDocument = state.documents[index-1]
+        } else if (index < state.documents.length) {
+          state.activeDocument = state.documents[index]
+        } else {
+          state.activeDocument = initialDocument
+        }
+
       default:
         return state;
     }

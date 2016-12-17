@@ -8,7 +8,7 @@
       <searchbar></searchbar>
 
       <div class="button-row">
-      <a href="mailto:?&Subject={{activeDocument.title}}&Body=You might be interested in the article %0D%0A%0D%0A %20%20%20%20 {{activeDocument.title}} %0D%0A%0D%0A at {{host}}/documents//{{activeDocument.id}}">Share</a>
+      <a href="mailto:?&Subject={{activeDocument.title}}&Body=You might be interested in the article %0D%0A%0D%0A %20%20%20%20 {{activeDocument.title}} %0D%0A%0D%0A at {{host}}/documents/{{activeDocument.id}}">Share</a>
         <span class="reader-control" (click)="printActiveDocument()">Print</span>
         <span class="reader-control"  (click)="exportDocumentToLaTeX()">TeX</span>
         <a style="margin-left:8px; color: dodgerblue"

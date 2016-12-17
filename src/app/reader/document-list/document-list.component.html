@@ -19,6 +19,13 @@
     </ul>
   </div>
 
-
 </div>
+
+<div style="margin-top:8px;">
+
+  <span style="font-size:1.2rem;">{{(activeDocument$ | async)?.author }}: </span>
+  <span style="font-size: 0.9rem;">{{((activeDocument$ | async)?.created_at) | date }}</span>
+  <span style="font-size: 0.9rem;"> &mdash; {{((activeDocument$ | async)?.updated_at) | date }}</span>
+</div>
+
 

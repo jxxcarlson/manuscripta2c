@@ -20,29 +20,22 @@ interface AppState {
 })
 export class DocumentListComponent implements OnInit {
 
-  documents: Document[]
-  activeDocument: Document
+  documents$: Observable<Document[]>
+  activeDocument$: Observable<Document>
 
-  subdocuments: Document[] = []
-  parentId:string = '-1'
-  parentTitle: string = '-'
-
-  tocInset:string = "300"
-
-  documentListTitle:string = 'Documents'
+  tocInset:string = "300"  // used to set height of table of contents (TOC)
+  documentListTitle:string = 'Documents'  // is used as title of TOC
 
   constructor( private store: Store<AppState>, private documentService: DocumentService) {
 
     this.documentService = documentService
 
-    store.select(s => s.documents)
-      .subscribe( documents => this.documents = documents )
-
-    store.select(s => s.activeDocument)
-      .subscribe( activeDocument => this.activeDocument = activeDocument )
   }
 
   ngOnInit() {
+
+    this.documents$ = this.store.select(s => s.documents)
+    this.activeDocument$ = this.store.select(s => s.activeDocument)
 
   }
 
@@ -56,27 +49,11 @@ export class DocumentListComponent implements OnInit {
 
     }
 
-
-    if (this.activeDocument.links != undefined &&
-      this.activeDocument.links.parent != undefined &&
-      this.activeDocument.links.parent.id != undefined) {
-
-      this.parentId = this.activeDocument.links.parent.id
-      this.parentTitle = this.activeDocument.links.parent.title
-
-    } else {
-
-      this.parentId = '-1'
-      this.parentTitle = '-'
-
-    }
-
-
   }
 
-  isActive(document): boolean {
+  isActive(document, activeDocument): boolean {
 
-    if ( document.id == this.activeDocument.id) {
+    if ( document.id == activeDocument.id) {
 
       return true
 

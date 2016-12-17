@@ -1,15 +1,17 @@
 <div class="document-list container">
-  <h1> {{documentListTitle}}</h1>
+  <h1> {{documentListTitle}} ({{(documents$ | async)?.length}})</h1>
 
 
-  <div *ngIf="documents" [textPageHeight]="tocInset" class="document-list-inner">
+  <!-- <div *ngIf="documents" [textPageHeight]="tocInset" class="document-list-inner"> -->
+  <div [textPageHeight]="tocInset" class="document-list-inner">
+
     <ul class="">
       <document-list-item class=""
 
-          *ngFor="let currentDocument of documents"
+          *ngFor="let currentDocument of (documents$ | async)"
                           [document]="currentDocument"
                           (click)="selectDocument(currentDocument)"
-                          [active]="isActive(currentDocument)"
+                          [active]="isActive(currentDocument, (activeDocument$ | async))"
                           [subdocumentSymbol]="subdocumentSymbol(currentDocument)"
 
       >

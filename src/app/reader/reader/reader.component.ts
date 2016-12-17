@@ -77,7 +77,7 @@ export class ReaderComponent implements OnInit {
 
   }
 
-  exportDocumetToLaTeX() {
+  exportDocumentToLaTeX() {
 
     this.store
       .take(1)

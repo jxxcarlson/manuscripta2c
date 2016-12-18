@@ -35,16 +35,20 @@ export const appReducer: ActionReducer<AppState> =
           }
         )
       case DELETE_ACTIVE_DOCUMENT:
-        var index = state.documents.indexOf(state.activeDocument)
-        if (index > -1) { state.documents.splice(index, 1) }
-        if (index > 0) {
-          state.activeDocument = state.documents[index-1]
-        } else if (index < state.documents.length) {
-          state.activeDocument = state.documents[index]
-        } else {
-          state.activeDocument = initialDocument
+        var index = state.documents.indexOf(state.activeDocument), newDocumentList, newActiveDocument
+
+        if (index > -1) {
+          newDocumentList = state.documents.slice(0, index).concat(state.documents.slice(index + 1))
         }
-        return state
+
+        if (index > 0) {
+          newActiveDocument = state.documents[index-1]
+        } else if (index < state.documents.length) {
+          newActiveDocument = state.documents[index]
+        } else {
+          newActiveDocument = initialDocument
+        }
+        return {documents: newDocumentList, activeDocument: newActiveDocument}
 
       default:
         return state;

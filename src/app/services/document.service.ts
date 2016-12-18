@@ -176,8 +176,9 @@ export class DocumentService {
         .map((res) => res.json())
         .do(payload => [
           console.log(`RESPONSE TO CREATE DOCUMENT: ${payload}`),
-          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']}),
-          this.select(payload['document'])
+          this.store.dispatch({type: ADD_DOCUMENT_AND_SELECT, payload: payload['document']}),
+          this.search(`id=${payload['document']['id']}`)//,
+         // this.select(payload['document'])
         ])
       ).subscribe()
   }

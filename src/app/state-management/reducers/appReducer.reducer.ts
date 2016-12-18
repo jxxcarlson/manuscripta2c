@@ -44,6 +44,7 @@ export const appReducer: ActionReducer<AppState> =
         } else {
           state.activeDocument = initialDocument
         }
+        return state
 
       default:
         return state;

@@ -34,7 +34,7 @@ export const appReducer: ActionReducer<AppState> =
             documents: [...state.documents, action.payload]
           }
         )
-      case DELETE_ACTIVE_DOCUMENT:
+      case  DELETE_ACTIVE_DOCUMENT:
         var index = state.documents.indexOf(state.activeDocument), newDocumentList, newActiveDocument
 
         if (index > -1) {
@@ -48,7 +48,8 @@ export const appReducer: ActionReducer<AppState> =
         } else {
           newActiveDocument = initialDocument
         }
-        return {documents: newDocumentList, activeDocument: newActiveDocument}
+
+        return Object.assign(state, { documents: newDocumentList, activeDocument: newActiveDocument })
 
       default:
         return state;

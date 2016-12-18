@@ -34,7 +34,8 @@ export class DocumentListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.documents$ = this.store.select(s => s.documents)
+    this.documents$ = this.store.select(s => s.documents).do(val => console.log(`${val.length} documents loaded`))
+
     this.activeDocument$ = this.store.select(s => s.activeDocument)
 
   }

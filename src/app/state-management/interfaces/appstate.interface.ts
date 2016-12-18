@@ -13,7 +13,4 @@ export interface AppState{
 
   editor: Editor
 
-  defaultDocumentList: Document[]
-  tableOfContents: Document[]
-
 };

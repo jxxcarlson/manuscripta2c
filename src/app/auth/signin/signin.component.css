@@ -1,7 +1,7 @@
 .auth-button-1 {
 
-  background-color: cornflowerblue;
-  color: white;
+  background-color: #ddd;
+  color: black;
 }
 
 input[type=text], input[type=password] {

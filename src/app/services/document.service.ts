@@ -169,8 +169,6 @@ export class DocumentService {
 
   createDocument(params) {
 
-    console.log(`createDocument: params = ${JSON.stringify(params)}`)
-
     let url = `${this.apiRoot}/documents`
 
     this.store.select(state=> state.user.token)

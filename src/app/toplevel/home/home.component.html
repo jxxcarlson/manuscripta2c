@@ -3,19 +3,24 @@
 <div class="ui centered grid">
 
   <div class="four wide column">
-  <img src="http://psurl.s3.amazonaws.com/images/jc/bird-b4ba.jpeg" width="100%" style="float:left; margin-right:15px; ">
 
-  <h2>Welcome to Manuscripta.io</h2>
-  <p style="">Write and publish ordinary text, place images, audio, and video.
-    Even insert equations and formulae.</p>
+    <img src="http://psurl.s3.amazonaws.com/images/jc/bird-b4ba.jpeg" width="100%" style="float:left; margin-right:15px; ">
 
-  <img src="http://psurl.s3.amazonaws.com/images/manuscripta/integral.png" width=150 style="margin-left:40px;margin-top:-25px;">
+    <!-- LANDING PAGE  -->
+    <div [hidden]="(signedIn$ | async)">
+      <h2>Welcome to Manuscripta.io</h2>
+      <p style="">Write and publish ordinary text, place images, audio, and video.
+        Even insert equations and formulae.</p>
 
-  <p style="margin-top:0rem;">To see more content, click on the <b>Read</b> tab above, and
-    type something in the search box. <i>Try: &quot;harmonic&quot;, &quot;quantum&quot;, &quot;id=265&quot; or
-    &quot;poetry&quot;</i>. Or just try <b>Explore</b>, above right.
-    <span style="margin-left:0; font-size: 1.25rem;" class="nav-item"><a [routerLink]="['/read']">Read Now</a></span>
-  </p>
+      <img src="http://psurl.s3.amazonaws.com/images/manuscripta/integral.png" width=150 style="margin-left:40px;margin-top:-25px;">
+
+      <p style="margin-top:0rem;">To see what is on Manuscripta,
+        type something in the search box. <i>Try: &quot;harmonic&quot;, &quot;quantum&quot;, &quot;id=265&quot; or
+          &quot;poetry&quot;</i>. Or click on <b>Explore</b>, in the navigation bar.
+        <!-- <span style="margin-left:0; font-size: 1.25rem;" class="nav-item"><a [routerLink]="['/read']">Read Now</a></span> -->
+      </p>
+    </div>
+
 
   </div>
 
@@ -28,25 +33,57 @@
   <div class="one wide column"></div>
 
   <div class="six wide column">
+
+
+    <!-- SEARCH BAR -->
+    <div style="margin-bottom:60px;">
+
+      <searchbar [target]="'/read'"></searchbar>
+
+    </div>
+
+
+    <div style="margin-top:0px; margin-bottom:60px;" [hidden]="!(signedIn$ | async )">
+      <!-- <app-search-scope-control></app-search-scope-control> -->
+
+      <!-- SETTINGS -->
+      <div style="margin-top:20px;">
+        <a [routerLink]="['/settings']">Settings</a>
+
+      </div>
+
+    </div>
+
+
+
     <signin [hidden]="signingUp"></signin>
     <br><br>
+
+
     <span
       [hidden]="signingUp || (signedIn$ | async)"
       (click)="toggleSignup()"
     >
-      <button class="auth-button-1">Sign up</button> if you need an account
+      <span style="font-weight:bold; color: cornflowerblue">Sign up</span> if you need an account
     </span>
+
+
     <signup [hidden]="!signingUp"></signup>
 
     <p style="margin-top:20px;" [hidden]="!signingUp"  (click)="toggleSignup()"><button class="auth-button-1">Cancel</button></p>
 
 
-    <div style="margin-top:60px;width:250px; background-color:#eee; padding:20px;">
+
+
+    <!-- MESSAGE: NOT VISIBLE WHEN SIGNED IN -->
+    <div [hidden]="(signedIn$ | async)" style="margin-top:60px;width:250px; background-color:#eee; padding:20px;">
       <h4>Note</h4>
       <p>This is an experimental, incomplete version of <a href="http:www.manuscripta.io">Manuscripta.io</a>.</p>
 
       <p>Questions, bugs, etc: jxxcarlson at gmail.</p>
     </div>
+
+
   </div>
 
 

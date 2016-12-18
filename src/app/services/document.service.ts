@@ -10,7 +10,7 @@ import {Constants} from '../toplevel/constants'
 
 import { QueryParser } from './queryparser.service'
 
-import { ADD_DOCUMENT, SET_DOCUMENTS } from '../state-management/reducers/documents.reducer'
+import { ADD_DOCUMENT, SET_DOCUMENTS, GET_DOCUMENTS } from '../state-management/reducers/documents.reducer'
 import { DELETE_ACTIVE_DOCUMENT, SET_DOCUMENTS_AND_SELECT, ADD_DOCUMENT_AND_SELECT } from '../state-management/reducers/appReducer.reducer'
 import { SELECT_DOCUMENT, UPDATE_DOCUMENT } from '../state-management/reducers/activeDocument.reducer'
 import {SET_EDIT_TEXT} from '../state-management/reducers/editor.reducer'
@@ -309,17 +309,27 @@ export class DocumentService {
 
 
 
-  delete(documentId: number,
+   delete(document: Document,
          mode: string,  // mode = soft|hard|undelete
          callback = () => this.store.dispatch({type: DELETE_ACTIVE_DOCUMENT, payload: ''})) {
 
-    let url = `${this.apiRoot}/documents/${documentId}?mode=${mode}`
+     let url = `${this.apiRoot}/documents/${document.id}?mode=${mode}`
+
+     var fixup
+     if (document.links.parent == undefined) {
+       // fixup = () => this.search(`id=${document.id}`)
+       fixup = () => this.store.dispatch({type: GET_DOCUMENTS, payload: ''})
+     } else {
+       fixup = () => this.search(`id=${document.links.parent.id}`)
+
+     }
 
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.delete(url, this.standardOptions(token))
         .map((res) => res.json())
         .do(payload => defaultCallback(payload))
         .do(payload => callback())
+        .do(fixup())
       ).subscribe()
 
   }

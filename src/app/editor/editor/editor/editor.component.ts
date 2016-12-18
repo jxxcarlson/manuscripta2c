@@ -8,6 +8,7 @@ import {User} from '../../../state-management/interfaces/user.interface'
 import { Observable, Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import {Constants} from '../../../toplevel/constants'
+import {Router} from '@angular/router'
 
 
 
@@ -43,7 +44,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
               private navbarService: NavbarService,
               private store: Store<AppState>,
               private documentService: DocumentService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private router: Router) {
 
 
 
@@ -54,6 +56,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
     this.activeDocument$ = store.select(state => state.activeDocument)
     this.user$ = store.select(state => state.user)
     this.userOwnsActiveDocument$ = store.select(state => state.user.id == state.activeDocument.owner_id)
+    this.router = router
 
   }
 
@@ -122,11 +125,20 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   }
 
+  gotoRoute() {
+
+    setTimeout(() => {
+      [this.router.navigateByUrl('/edit'),
+        console.log('GO TO ROUTE')]
+    }, 700)
+  }
+
   softDeleteDocument() {
 
     this.store
       .take(1)
-      .subscribe((state) => this.documentService.delete(state.activeDocument.id, 'soft'))
+      .subscribe((state) => this.documentService.delete(state.activeDocument, 'soft'))
+
 
   }
 

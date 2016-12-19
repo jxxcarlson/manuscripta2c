@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 import {User} from '../../state-management/interfaces/user.interface'
 import {UIState} from '../../state-management/interfaces/uistate.interface'
-import {UPDATE_NAV_STATE} from '../../state-management/reducers/uistate.reducer'
+import {updateNavState} from '../../state-management/reducers/action.types'
 
 export interface AppState{
 
@@ -44,7 +44,7 @@ export class NavbarService {
   updateUIState(signal: string) {
 
     console.log(`updateUIState sends signal ${signal}`)
-    this.navStore.dispatch({type: UPDATE_NAV_STATE, payload: {activeNavSection: signal}})
+    this.navStore.dispatch(updateNavState({activeNavSection: signal}))
   }
 
 

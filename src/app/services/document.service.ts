@@ -10,10 +10,17 @@ import {Constants} from '../toplevel/constants'
 
 import { QueryParser } from './queryparser.service'
 
-import { ADD_DOCUMENT, SET_DOCUMENTS, GET_DOCUMENTS } from '../state-management/reducers/documents.reducer'
-import { DELETE_ACTIVE_DOCUMENT, SET_DOCUMENTS_AND_SELECT, ADD_DOCUMENT_AND_SELECT } from '../state-management/reducers/appReducer.reducer'
-import { SELECT_DOCUMENT, UPDATE_DOCUMENT } from '../state-management/reducers/activeDocument.reducer'
-import {SET_EDIT_TEXT} from '../state-management/reducers/editor.reducer'
+import {
+  deleteActiveDocument,
+  addDocumentsAndSelect,
+  selectDocument,
+  updateDocument,
+  setDocuments,
+  addDocument,
+  getDocuments,
+  setEditText,
+} from '../state-management/reducers/action.types'
+
 
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
@@ -42,7 +49,7 @@ export class DocumentService {
   // Add existing document to document list
   addDocument(document) {
 
-    this.store.dispatch({type: ADD_DOCUMENT, payload: document})
+    this.store.dispatch(addDocument(document))
   }
 
 
@@ -54,7 +61,7 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.get(url, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']}))
+        .do(payload => this.store.dispatch(addDocument(payload['document'])))
       ).subscribe()
 
   }
@@ -68,8 +75,8 @@ export class DocumentService {
       .flatMap( token => this.http.get(url, this.standardOptions(token))
         .map((res) => res.json())
         .do(payload =>[
-          this.store.dispatch({type: ADD_DOCUMENT, payload: payload['document']}),
-          this.store.dispatch({type: SELECT_DOCUMENT, payload: payload['document']})
+          this.store.dispatch(addDocument(payload['document'])),
+          this.store.dispatch(selectDocument(payload['document']))
         ])
       ).subscribe()
 
@@ -84,8 +91,8 @@ export class DocumentService {
       .flatMap( token => this.http.get(url, this.standardOptions(token))
         .map((res) => res.json())
         .do(payload =>[
-          this.store.dispatch({type: SELECT_DOCUMENT, payload: payload['document']}),
-          this.store.dispatch({type: SET_DOCUMENTS, payload: payload.document.links.documents})
+          this.store.dispatch(selectDocument(payload['document'])),
+          this.store.dispatch(setDocuments(payload.document.links.documents))
         ])
       ).subscribe()
 
@@ -109,12 +116,12 @@ export class DocumentService {
         .flatMap( token => this.http.get(url, this.standardOptions(token))
           .map((res) => res.json())
           .do(payload =>
-            this.store.dispatch({type: SELECT_DOCUMENT, payload: payload['document']}))
+            this.store.dispatch(selectDocument(payload['document'])))
         ).subscribe()
 
     } else {
 
-      this.store.dispatch({type: SELECT_DOCUMENT, payload: document})
+      this.store.dispatch(selectDocument(document))
 
     }
 
@@ -141,7 +148,7 @@ export class DocumentService {
       .flatMap( token => this.http.get(url, this.standardOptions(token))
         .map((res) => res.json())
         .do(payload => [
-          this.store.dispatch({type: SET_DOCUMENTS, payload: payload['documents']}),
+          this.store.dispatch(setDocuments(payload['documents'])),
           this.select(payload['documents'][0])
         ])
       ).subscribe()
@@ -176,7 +183,7 @@ export class DocumentService {
         .map((res) => res.json())
         .do(payload => [
           console.log(`RESPONSE TO CREATE DOCUMENT: ${payload}`),
-          this.store.dispatch({type: ADD_DOCUMENT_AND_SELECT, payload: payload['document']}),
+          this.store.dispatch(addDocumentsAndSelect(payload['document'])),
           this.search(`id=${payload['document']['id']}`)//,
          // this.select(payload['document'])
         ])
@@ -197,7 +204,7 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.post(url, params, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => this.store.dispatch({type: UPDATE_DOCUMENT, payload: payload['document']}))
+        .do(payload => this.store.dispatch(updateDocument(payload['document'])))
       ).subscribe()
 
   }
@@ -214,7 +221,7 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.post(url, params, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => this.store.dispatch({type: UPDATE_DOCUMENT, payload: payload['document']}))
+        .do(payload => this.store.dispatch(updateDocument(payload['document'])))
       ).subscribe()
 
   }
@@ -240,10 +247,7 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.post(url, params, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => this.store.dispatch({
-          type: SET_DOCUMENTS,
-          payload: payload.document.links.documents
-        }))
+        .do(payload => this.store.dispatch(setDocuments(payload.document.links.documents)))
       ).subscribe()
   }
 
@@ -256,7 +260,7 @@ export class DocumentService {
     this.store.select('activeDocument')
       .take(1)
       .subscribe( (doc: Document) => [
-        this.store.dispatch({type:SET_EDIT_TEXT, payload: doc.text})
+        this.store.dispatch(setEditText(doc.text))
       ])
   }
 
@@ -267,7 +271,7 @@ export class DocumentService {
       .subscribe( (doc: Document) => [
         doc.text = text,
         // console.log(`EDIT TEXT: ${doc.text}`)
-        this.store.dispatch({type:UPDATE_DOCUMENT, payload: doc})
+        this.store.dispatch(updateDocument(doc))
       ])
   }
 
@@ -312,14 +316,14 @@ export class DocumentService {
 
    delete(document: Document,
          mode: string,  // mode = soft|hard|undelete
-         callback = () => this.store.dispatch({type: DELETE_ACTIVE_DOCUMENT, payload: ''})) {
+         callback = () => this.store.dispatch(deleteActiveDocument())) {
 
      let url = `${this.apiRoot}/documents/${document.id}?mode=${mode}`
 
      var fixup
      if (document.links.parent == undefined) {
        // fixup = () => this.search(`id=${document.id}`)
-       fixup = () => this.store.dispatch({type: GET_DOCUMENTS, payload: ''})
+       fixup = () => this.store.dispatch(getDocuments())
      } else {
        fixup = () => this.search(`id=${document.links.parent.id}`)
 

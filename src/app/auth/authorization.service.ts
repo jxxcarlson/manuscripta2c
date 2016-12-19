@@ -9,7 +9,7 @@ import {AppState} from '../state-management/interfaces/appstate.interface'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { AUTHORIZE_USER } from '../state-management/reducers/user.reducer'
+import { authorizeUser } from '../state-management/reducers/action.types'
 
 
 @Injectable()
@@ -27,16 +27,12 @@ export class AuthorizationService {
 
     return this.http.get(url)
       .map((res:Response) => res.json())
-      .subscribe(payload => [
-          console.log(`PAYLOAD: ${payload}`),
-          this.store.dispatch({
-            type: AUTHORIZE_USER,
-            payload: { username: username, password: password,
-              id: payload.user_id, token: payload.token,
-              signedIn: payload.token != null }
-          })
-        ]
-      )
+      .subscribe(payload => this.store.dispatch(
+        authorizeUser(
+              { username: username, password: password,
+                id: payload.user_id, token: payload.token,
+                signedIn: payload.token != null
+              })))
   }
 
   signup(username: string, email: string, password: string) {
@@ -47,22 +43,22 @@ export class AuthorizationService {
 
     return this.http.post(url, parameter)
       .map((res:Response) => res.json())
-      .subscribe(payload => [
-          this.store.dispatch({
-            type: AUTHORIZE_USER,
-            payload: { username: username, password: password,
-              id: payload.user_id, token: payload.token,
-              signedIn: payload.token != null }
-          })
-        ]
-      )
+      .subscribe(payload =>
+          this.store.dispatch(
+            authorizeUser(
+              {
+                username: username, password: password,
+                id: payload.user_id, token: payload.token,
+                signedIn: payload.token != null
+              })))
   }
+
 
   signout() {
 
     var nullUser: User = {id: -1, username: 'nobody', password: '', email: 'nobody@nowhere.io', token: '', signedIn: false }
 
-    this.store.dispatch({type: AUTHORIZE_USER, payload: nullUser})
+    this.store.dispatch(authorizeUser(nullUser))
   }
 
 

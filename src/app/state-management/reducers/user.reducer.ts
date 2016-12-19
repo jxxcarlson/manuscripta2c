@@ -1,17 +1,16 @@
 // https://github.com/ngrx/store
 //
-export const AUTHORIZE_USER =  'AUTHORIZE_USER'
-export const GET_TOKEN =  'GET_TOKEN'
 
-
+import {ActionTypes} from './action.types'
 import { User, initialUser } from '../interfaces/user.interface'
-
 import { ActionReducer, Action } from '@ngrx/store';
+
+export const AUTHORIZE_USER =  'AUTHORIZE_USER'
 
 export const userReducer: ActionReducer<User> =
   (state: User = initialUser, action: Action) => {
     switch (action.type) {
-      case AUTHORIZE_USER:
+      case ActionTypes.AUTHORIZE_USER:
         return action.payload
       default:
         return state;

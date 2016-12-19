@@ -1,8 +1,7 @@
 // https://github.com/ngrx/store
 //
-export const SET_DOCUMENTS_AND_SELECT =  'SET_DOCUMENTS_AND_SELECT'
-export const ADD_DOCUMENT_AND_SELECT =  'ADD_DOCUMENT_AND_SELECT'
-export const DELETE_ACTIVE_DOCUMENT =  'DELETE_ACTIVE_DOCUMENT'
+
+import {ActionTypes} from './action.types'
 
 
 import { Document } from '../interfaces/document.interface'
@@ -23,18 +22,18 @@ export const appReducer: ActionReducer<AppState> =
 
     console.log(`STATE: ${state}`)
     switch (action.type) {
-      case SET_DOCUMENTS_AND_SELECT:
+      case ActionTypes.SET_DOCUMENTS_AND_SELECT:
         return Object.assign(state,
           {documents: action.payload},
           {activeDocument: action.payload[0]})
-      case ADD_DOCUMENT_AND_SELECT:
+      case ActionTypes.ADD_DOCUMENT_AND_SELECT:
         return Object.assign(state,
           {
             activeDocument: action.payload,
             documents: [...state.documents, action.payload]
           }
         )
-      case  DELETE_ACTIVE_DOCUMENT:
+      case  ActionTypes.DELETE_ACTIVE_DOCUMENT:
         var index = state.documents.indexOf(state.activeDocument), newDocumentList, newActiveDocument
 
         if (index > -1) {

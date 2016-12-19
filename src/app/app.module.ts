@@ -23,7 +23,8 @@ import {UserService} from './services/user.service';
 import {MailService} from './services/mailService'
 import {WindowRef} from './services/windowRef'
 
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { appReducer } from './state-management/reducers/appReducer.reducer'
 import {StoreLogMonitorModule, useLogMonitor} from '@ngrx/store-log-monitor';
 import {provideStore} from '@ngrx/store';
 
@@ -71,6 +72,9 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    StoreModule.provideStore(appReducer),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
     AppRoutingModule,
     AuthorizationModule,

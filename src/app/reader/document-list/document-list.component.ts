@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 import { Document } from '../../shared/document.model'
 import { Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
-import { SET_DOCUMENTS } from '../../state-management/reducers/documents.reducer'
+import { setDocuments } from '../../state-management/reducers/action.types'
 import { DocumentService } from '../../services/document.service'
 
 
@@ -46,7 +46,7 @@ export class DocumentListComponent implements OnInit {
 
     if (document.has_subdocuments) {
 
-      this.store.dispatch({type: SET_DOCUMENTS, payload: document.links.documents})
+      this.store.dispatch(setDocuments(document.links.documents))
 
     }
 

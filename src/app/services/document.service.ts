@@ -181,12 +181,12 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.post(url, Object.assign(params, {token: token}))
         .map((res) => res.json())
-        .do(payload => [
+        .do(payload =>
           // console.log(`RESPONSE TO CREATE DOCUMENT: ${JSON.stringify(payload)}`),
           this.store.dispatch(addDocumentsAndSelect(payload['document'])),
-          this.search(`id=${payload['document']['id']}`)//,
+          // this.search(`id=${payload['document']['id']}`)//,
          // this.select(payload['document'])
-        ])
+        )
       ).subscribe()
   }
 

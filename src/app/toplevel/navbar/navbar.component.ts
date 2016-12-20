@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
       .subscribe((val: Observable<UIState>)=> [
         this.navState$ = val,
         this.activeNavSection$ = val['activeNavSection'],
-        console.log(`navState changed: ${JSON.stringify(this.navState$)}`)
+        // console.log(`navState changed: ${JSON.stringify(this.navState$)}`)
       ])
   }
 

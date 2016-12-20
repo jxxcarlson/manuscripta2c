@@ -5,8 +5,8 @@ import {DocumentService} from '../../../services/document.service'
 import {AppState} from '../../../state-management/interfaces/appstate.interface'
 import {Document} from '../../../state-management/interfaces/document.interface'
 import {User} from '../../../state-management/interfaces/user.interface'
-import { Observable, Subscription } from 'rxjs/Rx';
-import { Store } from '@ngrx/store'
+import {Observable, Subscription} from 'rxjs/Rx';
+import {Store} from '@ngrx/store'
 import {Constants} from '../../../toplevel/constants'
 import {Router} from '@angular/router'
 

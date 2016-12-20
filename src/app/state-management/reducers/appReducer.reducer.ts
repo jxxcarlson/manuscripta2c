@@ -19,14 +19,13 @@ const initialAppState = {
 
 export const appReducer: ActionReducer<AppState> =
   (state: AppState , action: Action) => {
-
-    console.log(`STATE: ${state}`)
     switch (action.type) {
       case ActionTypes.SET_DOCUMENTS_AND_SELECT:
         return Object.assign(state,
           {documents: action.payload},
           {activeDocument: action.payload[0]})
       case ActionTypes.ADD_DOCUMENT_AND_SELECT:
+        console.log(`ADD_DOCUMENT_AND_SELECT:`)
         return Object.assign(state,
           {
             activeDocument: action.payload,

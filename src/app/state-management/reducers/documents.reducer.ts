@@ -13,11 +13,12 @@ export const documentsReducer: ActionReducer<Document[]> =
     case ActionTypes.ADD_DOCUMENT:
       return [ ...state, action.payload]
     case ActionTypes.DELETE_DOCUMENT:
-      var index = state.indexOf(action.payload), newDocumentList
+      let index = state.indexOf(action.payload)
       if (index > -1) {
-        newDocumentList = state.slice(0, index).concat(state.slice(index + 1))
+        return state.slice(0, index).concat(state.slice(index + 1))
+      } else {
+        return state
       }
-      return newDocumentList
     case ActionTypes.GET_DOCUMENTS:
       return state
 

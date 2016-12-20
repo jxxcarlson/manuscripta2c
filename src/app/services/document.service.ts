@@ -312,31 +312,16 @@ export class DocumentService {
   // (payload) => this.store.dispatch({type: DELETE_DOCUMENT, payload: document})
 
 
-
-   delete(document: Document,
-         mode: string,  // mode = soft|hard|undelete
-         callback = () => this.store.dispatch(deleteDocument(document))) {
+   // mode = soft|hard|undelete
+   delete(document: Document, mode: string)   {
 
      let url = `${this.apiRoot}/documents/${document.id}?mode=${mode}`
-
-     var fixup
-     if (document.links.parent == undefined) {
-       // fixup = () => this.search(`id=${document.id}`)
-       fixup = () => this.store.dispatch(getDocuments())
-     } else {
-       fixup = () => this.search(`id=${document.links.parent.id}`)
-
-     }
 
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.delete(url, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => defaultCallback(payload))
-        .do(payload => callback())
-        .do(fixup())
+        .do( () => this.store.dispatch(deleteDocument(document)))
       ).subscribe()
-
   }
-
 
 }

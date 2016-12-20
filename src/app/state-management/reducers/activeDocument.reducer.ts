@@ -4,9 +4,9 @@
 
 import {ActionTypes} from './action.types'
 
-import { Document } from '../interfaces/document.interface'
+import {Document} from '../interfaces/document.interface'
 import {initialDocument} from '../interfaces/document.interface'
-import { ActionReducer, Action } from '@ngrx/store';
+import {ActionReducer, Action} from '@ngrx/store';
 
 
 export const activeDocumentReducer: ActionReducer<Document> = (state: Document = initialDocument, action: Action) => {

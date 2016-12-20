@@ -47,7 +47,8 @@ export const appReducer: ActionReducer<AppState> =
           newActiveDocument = initialDocument
         }
 
-        return Object.assign(state, { documents: newDocumentList, activeDocument: newActiveDocument })
+        return Object.assign(state, { documents: newDocumentList})
+        // return Object.assign(state, { documents: newDocumentList, activeDocument: newActiveDocument })
 
       default:
         return state;

@@ -11,6 +11,7 @@ export const ActionTypes = {
 
   SET_DOCUMENTS:  'SET_DOCUMENTS',
   ADD_DOCUMENT:  'ADD_DOCUMENT',
+  DELETE_DOCUMENT: 'DELETE_DOCUMENT',
   GET_DOCUMENTS:  'GET_DOCUMENTS',
 
   UPDATE_EDIT_TEXT: 'UPDATE_EDIT_TEXT',
@@ -75,6 +76,12 @@ export function setDocuments(payload): Action {
 export function addDocument(payload): Action {
 
   return { type: ActionTypes.ADD_DOCUMENT, payload: payload }
+
+}
+
+export function deleteDocument(payload): Action {
+
+  return { type: ActionTypes.DELETE_DOCUMENT, payload: payload }
 
 }
 

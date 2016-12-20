@@ -11,8 +11,7 @@ import {Constants} from '../toplevel/constants'
 import { QueryParser } from './queryparser.service'
 
 import {
-  deleteActiveDocument,
-  addDocumentsAndSelect,
+  deleteDocument,
   selectDocument,
   updateDocument,
   setDocuments,
@@ -183,7 +182,7 @@ export class DocumentService {
         .map((res) => res.json())
         .do(payload =>
           // console.log(`RESPONSE TO CREATE DOCUMENT: ${JSON.stringify(payload)}`),
-          this.store.dispatch(addDocumentsAndSelect(payload['document'])),
+          this.store.dispatch(addDocument(payload['document'])),
           // this.search(`id=${payload['document']['id']}`)//,
          // this.select(payload['document'])
         )
@@ -316,7 +315,7 @@ export class DocumentService {
 
    delete(document: Document,
          mode: string,  // mode = soft|hard|undelete
-         callback = () => this.store.dispatch(deleteActiveDocument())) {
+         callback = () => this.store.dispatch(deleteDocument(document))) {
 
      let url = `${this.apiRoot}/documents/${document.id}?mode=${mode}`
 

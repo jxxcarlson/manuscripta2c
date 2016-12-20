@@ -33,6 +33,8 @@ export const ActionTypes = {
 
 export function deleteActiveDocument(): Action {
 
+  console.log(`Executing: deleteActiveDocument`)
+
   return { type: ActionTypes.DELETE_ACTIVE_DOCUMENT, payload: { } }
 
 }
@@ -44,6 +46,8 @@ export function setDocumentsAndSelect(payload): Action {
 }
 
 export function addDocumentsAndSelect(payload): Action {
+
+  console.log(`Executing: addDocumentsAndSelect`)
 
   return { type: ActionTypes.ADD_DOCUMENT_AND_SELECT, payload: payload }
 

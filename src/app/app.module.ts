@@ -73,7 +73,7 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     FormsModule,
     HttpModule,
 
-    StoreModule.provideStore(appReducer),
+    StoreModule.provideStore(appReducer, documentsReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
     AppRoutingModule,

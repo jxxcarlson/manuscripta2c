@@ -2,9 +2,7 @@ import {Action} from '@ngrx/store'
 
 export const ActionTypes = {
 
-  DELETE_ACTIVE_DOCUMENT: 'DELETE_ACTIVE_DOCUMENT',
   SET_DOCUMENTS_AND_SELECT:  'SET_DOCUMENTS_AND_SELECT',
-  ADD_DOCUMENT_AND_SELECT: 'ADD_DOCUMENT_AND_SELECT',
 
   SELECT_DOCUMENT:  'SELECT_DOCUMENT',
   UPDATE_DOCUMENT:  'UPDATE_DOCUMENT',
@@ -32,27 +30,12 @@ export const ActionTypes = {
 ***/
 
 
-export function deleteActiveDocument(): Action {
-
-  console.log(`Executing: deleteActiveDocument`)
-
-  return { type: ActionTypes.DELETE_ACTIVE_DOCUMENT, payload: { } }
-
-}
-
 export function setDocumentsAndSelect(payload): Action {
 
   return { type: ActionTypes.SET_DOCUMENTS_AND_SELECT, payload: payload }
 
 }
 
-export function addDocumentsAndSelect(payload): Action {
-
-  console.log(`Executing: addDocumentsAndSelect`)
-
-  return { type: ActionTypes.ADD_DOCUMENT_AND_SELECT, payload: payload }
-
-}
 
 
 export function selectDocument(payload): Action {

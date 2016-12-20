@@ -13,6 +13,9 @@ import { uistateReducer } from './state-management/reducers/uistate.reducer'
 import { userReducer } from './state-management/reducers/user.reducer'
 
 import { Store } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { DocumentEffects } from './state-management/effects/document.effects';
+
 import {compose} from '@ngrx/core/compose'
 import {combineReducers} from '@ngrx/store'
 import { localStorageSync } from 'ngrx-store-localstorage';
@@ -73,8 +76,9 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     FormsModule,
     HttpModule,
 
-    StoreModule.provideStore(appReducer),
+    StoreModule.provideStore(appReducer, documentsReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    EffectsModule.run(DocumentEffects),
 
     AppRoutingModule,
     AuthorizationModule,

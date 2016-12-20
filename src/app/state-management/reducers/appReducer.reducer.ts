@@ -19,37 +19,11 @@ const initialAppState = {
 
 export const appReducer: ActionReducer<AppState> =
   (state: AppState , action: Action) => {
-
-    console.log(`STATE: ${state}`)
     switch (action.type) {
       case ActionTypes.SET_DOCUMENTS_AND_SELECT:
         return Object.assign(state,
           {documents: action.payload},
           {activeDocument: action.payload[0]})
-      case ActionTypes.ADD_DOCUMENT_AND_SELECT:
-        return Object.assign(state,
-          {
-            activeDocument: action.payload,
-            documents: [...state.documents, action.payload]
-          }
-        )
-      case  ActionTypes.DELETE_ACTIVE_DOCUMENT:
-        var index = state.documents.indexOf(state.activeDocument), newDocumentList, newActiveDocument
-
-        if (index > -1) {
-          newDocumentList = state.documents.slice(0, index).concat(state.documents.slice(index + 1))
-        }
-
-        if (index > 0) {
-          newActiveDocument = state.documents[index-1]
-        } else if (index < state.documents.length) {
-          newActiveDocument = state.documents[index]
-        } else {
-          newActiveDocument = initialDocument
-        }
-
-        return Object.assign(state, { documents: newDocumentList, activeDocument: newActiveDocument })
-
       default:
         return state;
     }

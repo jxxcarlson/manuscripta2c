@@ -78,7 +78,7 @@ export class NewDocumentComponent implements OnInit {
   submit() {
 
 
-    console.log(`MODEL: ${JSON.stringify(this.model)}`)
+    // console.log(`MODEL: ${JSON.stringify(this.model)}`)
 
     let params = {
       title: this.model.title,
@@ -96,9 +96,10 @@ export class NewDocumentComponent implements OnInit {
         current_document_id: activeDocument.id,
         parent_document_id: this.parentId(activeDocument)
       }),
-      console.log(`CREATION PARAMS: ${JSON.stringify(params)}`),
+      // console.log(`CREATION PARAMS: ${JSON.stringify(params)}`),
       this.documentService.createDocument(params),
-      this.gotoRoute()
+      this.router.navigateByUrl('/edit')
+      // this.gotoRoute()
     ])
 
 

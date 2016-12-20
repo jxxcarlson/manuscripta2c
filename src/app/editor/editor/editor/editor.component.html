@@ -10,6 +10,7 @@
     <div style="">
       <searchbar></searchbar>
 
+      <!-- <editor-tools [hidden]="!(userOwnsActiveDocument$ | async)"></editor-tools> -->
       <editor-tools [hidden]="!(userOwnsActiveDocument$ | async)"></editor-tools>
 
       <document-list> </document-list>
@@ -19,7 +20,8 @@
 
   <div class="six wide column">
     <div [textPageHeight]="130">
-      <div [hidden]="!(userOwnsActiveDocument$ | async)" style="margin-bottom:8px;">
+      <!--<div [hidden]="(!(userOwnsActiveDocument$ | async) || (activeDocument$ | async)?.id == 11 )" style="margin-bottom:8px;"> -->
+      <div [hidden]="(!(userOwnsActiveDocument$ | async) || (activeDocument$ | async)?.id == 11 )" style="margin-bottom:8px;">
         <button (click)="updateAndRenderText()">Update (ESC)</button>
         <div class="label-row">
           <span class="info">ID: {{ ( activeDocument$ | async )?.id }}</span>

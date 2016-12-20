@@ -11,13 +11,12 @@ import {Constants} from '../toplevel/constants'
 import { QueryParser } from './queryparser.service'
 
 import {
-  deleteActiveDocument,
-  addDocumentsAndSelect,
+  deleteDocument,
   selectDocument,
+  loadParent,
   updateDocument,
   setDocuments,
   addDocument,
-  getDocuments,
   setEditText,
 } from '../state-management/reducers/action.types'
 
@@ -83,7 +82,7 @@ export class DocumentService {
   }
 
 
-  getDocumentAndSubdocuments(id: number) {
+    getDocumentAndSubdocuments(id: number) {
 
     let url = `${this.apiRoot}/documents/${id}`
 
@@ -97,6 +96,26 @@ export class DocumentService {
       ).subscribe()
 
   }
+
+
+  loadParent(document) {
+
+    var parent  =  document.links.parent
+    if ( parent != undefined) {
+
+      let url = `${this.apiRoot}/documents/${parseInt(parent.id)}`
+
+      this.store.select(state=> state.user.token)
+        .flatMap( token => this.http.get(url, this.standardOptions(token))
+          .map((res) => res.json())
+          .map(payload => this.store.dispatch(loadParent(payload.document.links.documents)))
+        ).subscribe()
+    } else {
+
+    }
+
+  }
+
 
   select(document: Document) {
 
@@ -166,13 +185,6 @@ export class DocumentService {
     return new RequestOptions({ headers: headers });
   }
 
-  select2(document: Document) {
-
-    setTimeout(() => {
-      this.select(document)
-    }, 700)
-  }
-
 
   createDocument(params) {
 
@@ -182,10 +194,8 @@ export class DocumentService {
       .flatMap( token => this.http.post(url, Object.assign(params, {token: token}))
         .map((res) => res.json())
         .do(payload => [
-          console.log(`RESPONSE TO CREATE DOCUMENT: ${payload}`),
-          this.store.dispatch(addDocumentsAndSelect(payload['document'])),
-          this.search(`id=${payload['document']['id']}`)//,
-         // this.select(payload['document'])
+          this.loadParent(payload['document']),
+          this.store.dispatch(addDocument(payload['document']))
         ])
       ).subscribe()
   }
@@ -313,31 +323,16 @@ export class DocumentService {
   // (payload) => this.store.dispatch({type: DELETE_DOCUMENT, payload: document})
 
 
-
-   delete(document: Document,
-         mode: string,  // mode = soft|hard|undelete
-         callback = () => this.store.dispatch(deleteActiveDocument())) {
+   // mode = soft|hard|undelete
+   delete(document: Document, mode: string)   {
 
      let url = `${this.apiRoot}/documents/${document.id}?mode=${mode}`
-
-     var fixup
-     if (document.links.parent == undefined) {
-       // fixup = () => this.search(`id=${document.id}`)
-       fixup = () => this.store.dispatch(getDocuments())
-     } else {
-       fixup = () => this.search(`id=${document.links.parent.id}`)
-
-     }
 
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.delete(url, this.standardOptions(token))
         .map((res) => res.json())
-        .do(payload => defaultCallback(payload))
-        .do(payload => callback())
-        .do(fixup())
+        .do( () => this.store.dispatch(deleteDocument(document)))
       ).subscribe()
-
   }
-
 
 }

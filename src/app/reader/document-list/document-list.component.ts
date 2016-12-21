@@ -17,6 +17,7 @@ import {AppState} from '../../state-management/interfaces/appstate.interface'
 export class DocumentListComponent implements OnInit {
 
   documents$: Observable<Document[]>
+  numberOfDocuments$: Observable<number>
   activeDocument$: Observable<Document>
 
   tocInset:string = "300"  // used to set height of table of contents (TOC)
@@ -31,9 +32,9 @@ export class DocumentListComponent implements OnInit {
   ngOnInit() {
 
     this.documents$ = this.store.select(s => s.documents)
-
-    // .do(val => console.log(`DLIC: ${val.length} documents loaded`))
-
+    this.numberOfDocuments$ =
+      this.store.select(
+        s => s.documents == undefined ? 0: s.documents.length) //XX: Problem undef??
     this.activeDocument$ = this.store.select(s => s.activeDocument)
 
   }

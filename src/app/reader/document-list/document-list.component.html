@@ -1,7 +1,10 @@
 <div class="document-list container">
 
-  <h1 [hidden]="(documents$ | async)?.length == 0"> {{documentListTitle}} ({{(documents$ | async)?.length}})</h1>
+  <h1
+    [hidden]="(numberOfDocuments$ | async) == 0"
+  > {{documentListTitle}} ({{(documents$ | async)?.length}}) </h1>
 
+  <!-- [hidden]="(numberOfDocuments$ | async) == 0" -->
 
   <!-- <div *ngIf="documents" [textPageHeight]="tocInset" class="document-list-inner"> -->
   <div [textPageHeight]="tocInset" class="document-list-inner">

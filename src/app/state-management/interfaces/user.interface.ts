@@ -1,3 +1,5 @@
+
+
 export interface User {
   id: number
   username: string
@@ -5,11 +7,18 @@ export interface User {
   email: string
   token: string
   signedIn: boolean
+  last_document_id: number
+  last_document_title: string
 };
 
-export const initialUser:User = {id: -1,
+export const initialUser:User = {
+  id: -1,
   username: 'nobody',
   email: 'nobody@nowhere.io',
   password: '',
   token: '',
-  signedIn: false}
+  signedIn: false,
+  last_document_id: -1,
+  last_document_title: 'Whatever'
+
+}

@@ -52,10 +52,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
     console.log('CONSTRUCT EDITOR')
     this.navbarService = navbarService
     this.store = store
-
-    this.activeDocument$ = store.select(state => state.activeDocument)
-    this.user$ = store.select(state => state.user)
-    this.userOwnsActiveDocument$ = store.select(state => state.user.id == state.activeDocument.owner_id)
     this.router = router
 
   }
@@ -113,6 +109,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
         this.model.source_text = val.text,
       ])
 
+    this.activeDocument$ = this.store.select(state => state.activeDocument)
+    this.user$ = this.store.select(state => state.user)
+    this.userOwnsActiveDocument$ = this.store.select(state => state.user.id == state.activeDocument.owner_id)
+
 
     this.timer = Observable.timer(2000,1000);
     this.sub = this.timer.subscribe(t => this.tickerFunc(t));
@@ -125,13 +125,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   }
 
-  gotoRoute() {
-
-    setTimeout(() => {
-      [this.router.navigateByUrl('/edit'),
-        console.log('GO TO ROUTE')]
-    }, 700)
-  }
 
   softDeleteDocument() {
 
@@ -139,7 +132,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
       .take(1)
       .subscribe((state) => this.documentService.delete(state.activeDocument, 'soft'))
 
-    // this.gotoRoute()
   }
 
 

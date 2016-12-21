@@ -6,7 +6,7 @@ import {Editor} from './editor.interface';
 export interface AppState{
 
   user: User
-  uistate: UIState;
+  uistate: UIState
 
   documents: Document[]
   activeDocument: Document
@@ -14,3 +14,21 @@ export interface AppState{
   editor: Editor
 
 };
+
+import {initialUser} from './user.interface'
+import {initialUIState} from './uistate.interface'
+import {initialDocument} from './document.interface'
+import {initialEditState} from './editor.interface'
+
+
+export const initialAppState = {
+
+  user: initialUser,
+  uistate: initialUIState,
+  documents: [],
+  activeDocument: initialDocument,
+  editor: initialEditState
+
+}
+
+// editor: Editor

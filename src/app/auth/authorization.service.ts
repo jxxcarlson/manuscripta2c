@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { authorizeUser } from '../state-management/reducers/action.types'
+import { clearAll } from '../state-management/reducers/action.types'
 
 
 @Injectable()
@@ -29,9 +30,13 @@ export class AuthorizationService {
       .map((res:Response) => res.json())
       .subscribe(payload => this.store.dispatch(
         authorizeUser(
-              { username: username, password: password,
-                id: payload.user_id, token: payload.token,
-                signedIn: payload.token != null
+              { username: username,
+                password: password,
+                id: payload.user_id,
+                token: payload.token,
+                signedIn: payload.token != null,
+                last_document_id: payload.last_document_id,
+                last_document_title: payload.last_document_title
               })))
   }
 
@@ -43,22 +48,37 @@ export class AuthorizationService {
 
     return this.http.post(url, parameter)
       .map((res:Response) => res.json())
-      .subscribe(payload =>
+      .subscribe(payload => [
+          console.log(`LOGIN RESPONSE: ${JSON.stringify(payload)}`),
           this.store.dispatch(
             authorizeUser(
               {
                 username: username, password: password,
                 id: payload.user_id, token: payload.token,
                 signedIn: payload.token != null
-              })))
+              }))
+      ])
+
   }
 
 
   signout() {
 
-    var nullUser: User = {id: -1, username: 'nobody', password: '', email: 'nobody@nowhere.io', token: '', signedIn: false }
+    var nullUser: User = {
+      id: -1,
+      username: 'nobody',
+      password: '',
+      email: 'nobody@nowhere.io',
+      token: '',
+      signedIn: false,
+      last_document_id: -1,
+      last_document_title: 'Whatever'
+    }
 
+
+    this.store.dispatch(clearAll())
     this.store.dispatch(authorizeUser(nullUser))
+
   }
 
 

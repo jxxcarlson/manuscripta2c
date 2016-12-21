@@ -3,11 +3,13 @@ import {Action} from '@ngrx/store'
 export const ActionTypes = {
 
   SET_DOCUMENTS_AND_SELECT:  'SET_DOCUMENTS_AND_SELECT',
+  CLEAR_ALL: 'CLEAR_ALL',
 
   SELECT_DOCUMENT:  'SELECT_DOCUMENT',
   UPDATE_DOCUMENT:  'UPDATE_DOCUMENT',
 
   SET_DOCUMENTS:  'SET_DOCUMENTS',
+  CLEAR_DOCUMENTS:  'CLEAR_DOCUMENTS',
   ADD_DOCUMENT:  'ADD_DOCUMENT',
   LOAD_PARENT: 'LOAD_PARENT',
   DELETE_DOCUMENT: 'DELETE_DOCUMENT',
@@ -37,6 +39,13 @@ export function setDocumentsAndSelect(payload): Action {
 
 }
 
+export function clearAll(): Action {
+
+  return { type: ActionTypes.CLEAR_ALL }
+
+}
+
+
 
 
 export function selectDocument(payload): Action {
@@ -54,6 +63,12 @@ export function updateDocument(payload): Action {
 export function setDocuments(payload): Action {
 
   return { type: ActionTypes.SET_DOCUMENTS, payload: payload }
+
+}
+
+export function clearDocuments(): Action {
+
+  return { type: ActionTypes.CLEAR_DOCUMENTS }
 
 }
 

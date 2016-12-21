@@ -10,6 +10,8 @@ export const documentsReducer: ActionReducer<Document[]> =
   switch (action.type) {
     case ActionTypes.SET_DOCUMENTS:
       return action.payload
+    case ActionTypes.CLEAR_DOCUMENTS:
+      return []
     case ActionTypes.LOAD_PARENT:
       return action.payload
     case ActionTypes.ADD_DOCUMENT:

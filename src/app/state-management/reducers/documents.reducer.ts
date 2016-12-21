@@ -15,7 +15,7 @@ export const documentsReducer: ActionReducer<Document[]> =
     case ActionTypes.ADD_DOCUMENT:
       return [ ...state, action.payload]
     case ActionTypes.DELETE_DOCUMENT:
-      let index = state.indexOf(action.payload)
+      let index = state.map(doc => doc.id).indexOf(action.payload.id)
       if (index > -1) {
         return state.slice(0, index).concat(state.slice(index + 1))
       } else {

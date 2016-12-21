@@ -320,9 +320,6 @@ export class DocumentService {
 
   }
 
-  // (payload) => this.store.dispatch({type: DELETE_DOCUMENT, payload: document})
-
-
    // mode = soft|hard|undelete
    delete(document: Document, mode: string)   {
 
@@ -331,7 +328,7 @@ export class DocumentService {
     this.store.select(state=> state.user.token)
       .flatMap( token => this.http.delete(url, this.standardOptions(token))
         .map((res) => res.json())
-        .do( () => this.store.dispatch(deleteDocument(document)))
+        .map( () => this.store.dispatch(deleteDocument(document)))
       ).subscribe()
   }
 

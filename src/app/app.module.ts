@@ -76,7 +76,7 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     FormsModule,
     HttpModule,
 
-    StoreModule.provideStore(appReducer, documentsReducer),
+    // StoreModule.provideStore(appReducer, documentsReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(DocumentEffects),
 

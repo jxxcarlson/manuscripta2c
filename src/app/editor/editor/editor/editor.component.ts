@@ -139,7 +139,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
       .take(1)
       .subscribe((state) => this.documentService.delete(state.activeDocument, 'soft'))
 
-
+    // this.gotoRoute()
   }
 
 

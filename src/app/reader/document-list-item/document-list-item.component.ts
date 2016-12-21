@@ -25,6 +25,9 @@ export class DocumentListItemComponent implements OnInit {
     return  isTooLong ? s_ + ' ...' : s_;
   };
 
+  truncateString2 ( str: string, n: number, useWordBoundary: boolean = true ){
+    return  str
+  };
 
   constructor() {
 

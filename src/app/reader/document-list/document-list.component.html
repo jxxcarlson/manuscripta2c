@@ -1,5 +1,6 @@
 <div class="document-list container">
-  <h1> {{documentListTitle}} ({{(documents$ | async)?.length}})</h1>
+
+  <h1 [hidden]="(documents$ | async)?.length == 0"> {{documentListTitle}} ({{(documents$ | async)?.length}})</h1>
 
 
   <!-- <div *ngIf="documents" [textPageHeight]="tocInset" class="document-list-inner"> -->
@@ -30,6 +31,7 @@
 
 <pre>
 
+  {{(documents$ | async)?.length}}
  <!-- {{ store | async | json }}  -->
 
 </pre>

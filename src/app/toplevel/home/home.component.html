@@ -48,7 +48,9 @@
 
       <!-- SETTINGS -->
       <div style="margin-top:20px;font-size: 1.5rem;">
-        <button (click)="gotoLastDocument()">Last document: Foo</button>
+        <span style="color:cornflowerblue;"
+                (click)="gotoLastDocument()">Last document: {{ lastDocumentTitle$ | async }} </span>
+        <br><br>
         <a [routerLink]="['/settings']">Settings</a>
 
       </div>

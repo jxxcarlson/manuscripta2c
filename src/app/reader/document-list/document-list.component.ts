@@ -1,15 +1,11 @@
 import { Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
-import { Document } from '../../shared/document.model'
+import { Document } from '../../state-management/interfaces/document.interface'
 import { Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import { setDocuments } from '../../state-management/reducers/action.types'
 import { DocumentService } from '../../services/document.service'
 
-
-interface AppState {
-  documents: Document[]
-  activeDocument: Document
-}
+import {AppState} from '../../state-management/interfaces/appstate.interface'
 
 
 @Component({
@@ -35,7 +31,8 @@ export class DocumentListComponent implements OnInit {
   ngOnInit() {
 
     this.documents$ = this.store.select(s => s.documents)
-      .do(val => console.log(`DLIC: ${val.length} documents loaded`))
+
+    // .do(val => console.log(`DLIC: ${val.length} documents loaded`))
 
     this.activeDocument$ = this.store.select(s => s.activeDocument)
 

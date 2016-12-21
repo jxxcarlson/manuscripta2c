@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import { NavbarService } from '../navbar/navbar.service'
 import { AppState } from '../../state-management/interfaces/appstate.interface';
+import {DocumentService} from '../../services/document.service'
 import { Store } from '@ngrx/store';
 import { User } from '../../state-management/interfaces/user.interface'
 import { Observable} from 'rxjs/Rx';
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
   user$: Observable<User>
   signingUp: boolean = false;
   signedIn$: Observable<boolean>
+  lastDocumentTitle$: Observable<string>
 
   constructor(private navbarService: NavbarService,
               private userStore: Store<AppState>,
-              private router: Router) {
+              private router: Router,
+              private documentService: DocumentService) {
 
     this.navbarService = navbarService
     this.userStore = userStore
@@ -34,14 +37,15 @@ export class HomeComponent implements OnInit {
 
   gotoLastDocument() {
 
-    this.user$
+    this.userStore
       .take(1)
-      .subscribe(user => this.router.navigateByUrl(`/documents/#{user.last_document_id}`))
+      .subscribe(state => this.router.navigateByUrl(`/documents/${state.user.last_document_id}`))
   }
 
   ngOnInit() {
 
     this.user$ = this.userStore.select(state => state.user)
+    this.lastDocumentTitle$ = this.userStore.select(state => state.user.last_document_title)
     this.signedIn$ = this.userStore.select(state => state.user.signedIn)
 
     this.navbarService.updateUIState('home')

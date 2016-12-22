@@ -6,7 +6,7 @@ import {DocumentService} from '../../services/document.service'
 import { Store } from '@ngrx/store';
 import { User } from '../../state-management/interfaces/user.interface'
 import { Observable} from 'rxjs/Rx';
-import { pushDocumentOnHistory } from '../../state-management/reducers/action.types'
+import { pushDocumentOnHistory, clearHistory } from '../../state-management/reducers/action.types'
 
 
 @Component({
@@ -22,12 +22,14 @@ export class HomeComponent implements OnInit {
   lastDocumentTitle$: Observable<string>
 
   constructor(private navbarService: NavbarService,
-              private userStore: Store<AppState>,
+              private store: Store<AppState>,
+              private historyStore: Store<History>,
               private router: Router,
               private documentService: DocumentService) {
 
     this.navbarService = navbarService
-    this.userStore = userStore
+    this.store = store
+    this.historyStore = historyStore
 
   }
 
@@ -38,22 +40,28 @@ export class HomeComponent implements OnInit {
 
   gotoLastDocument() {
 
-    
-
-    this.userStore
+    this.store
       .take(1)
       .subscribe(state => this.router.navigateByUrl(`/documents/${state.user.last_document_id}`))
   }
 
   ngOnInit() {
 
-    this.user$ = this.userStore.select(state => state.user)
-    this.lastDocumentTitle$ = this.userStore.select(state => state.user.last_document_title)
-    this.signedIn$ = this.userStore.select(state => state.user.signedIn)
+    this.user$ = this.store.select(state => state.user)
+
+    /*
+    this.user$
+      .take(1)
+      .subscribe(user => this.historyStore.dispatch(pushDocumentOnHistory({title: user.last_document_title, id: user.last_document_id})))
+
+    */
+
+    this.lastDocumentTitle$ = this.store.select(state => state.user.last_document_title)
+    this.signedIn$ = this.store.select(state => state.user.signedIn)
 
     this.navbarService.updateUIState('home')
 
-    this.userStore
+    this.store
       .select('user')
       .subscribe((val: Observable<User>)=> [
         this.user$ = val,

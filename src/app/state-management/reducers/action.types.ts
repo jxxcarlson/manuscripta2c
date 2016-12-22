@@ -145,7 +145,7 @@ export function pushDocumentOnHistory(payload): Action {
 
 }
 
-export function clearHistory(payload): Action {
+export function clearHistory(): Action {
 
   return { type: ActionTypes.CLEAR_HISTORY }
 

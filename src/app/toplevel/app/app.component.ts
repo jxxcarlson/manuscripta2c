@@ -6,11 +6,8 @@ import { Store } from '@ngrx/store'
 
 import { DocumentService } from '../../services/document.service'
 
-interface AppState {
-  documents: Document[],
-  activeDocument: Document
-}
-
+import {AppState} from '../../state-management/interfaces/appstate.interface'
+import {clearHistory} from '../../state-management/reducers/action.types'
 
 
 @Component({
@@ -22,7 +19,10 @@ interface AppState {
 export class AppComponent {
 
   constructor( private documentService: DocumentService,
-               private constants: Constants) {
+               private constants: Constants,
+               private store: Store<any>) {
+''
+    this.store = store
 
     this.documentService = documentService
 
@@ -30,6 +30,8 @@ export class AppComponent {
     this.documentService.loadAndActivateDocument(468)
     // this.documentService.loadDocument(469)
     this.documentService.loadDocument(470)
+
+    this.store.dispatch(clearHistory())
 
   }
 

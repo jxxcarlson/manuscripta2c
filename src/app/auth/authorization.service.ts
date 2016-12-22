@@ -75,8 +75,6 @@ export class AuthorizationService {
       last_document_title: 'Whatever'
     }
 
-
-    this.store.dispatch(clearAll())
     this.store.dispatch(authorizeUser(nullUser))
 
   }

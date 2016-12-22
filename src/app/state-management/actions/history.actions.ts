@@ -1,3 +1,7 @@
+/**
+ *
+ *
+
 import { Action } from '@ngrx/store';
 import { type } from './type.utilities';
 
@@ -23,3 +27,7 @@ export class ClearHistory implements Action {
 export type Actions
   = PushDocumentOnHistory
   | ClearHistory;
+
+
+
+ */

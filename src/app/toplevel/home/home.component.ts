@@ -6,6 +6,7 @@ import {DocumentService} from '../../services/document.service'
 import { Store } from '@ngrx/store';
 import { User } from '../../state-management/interfaces/user.interface'
 import { Observable} from 'rxjs/Rx';
+import { pushDocumentOnHistory } from '../../state-management/reducers/action.types'
 
 
 @Component({
@@ -36,6 +37,8 @@ export class HomeComponent implements OnInit {
   }
 
   gotoLastDocument() {
+
+    
 
     this.userStore
       .take(1)

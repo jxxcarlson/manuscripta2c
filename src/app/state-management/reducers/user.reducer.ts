@@ -16,3 +16,6 @@ export const userReducer: ActionReducer<User> =
         return state;
     }
   };
+
+
+export const getUser = (state) => state.user;

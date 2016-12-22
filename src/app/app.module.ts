@@ -11,6 +11,7 @@ import { documentsReducer } from './state-management/reducers/documents.reducer'
 import { activeDocumentReducer } from './state-management/reducers/activeDocument.reducer'
 import { uistateReducer } from './state-management/reducers/uistate.reducer'
 import { userReducer } from './state-management/reducers/user.reducer'
+import { documentHistoryReducer } from './state-management/reducers/documentHistory.reducer'
 
 import { Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -92,13 +93,18 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
 
     StoreModule.provideStore(
       compose(
-        localStorageSync(['user', 'activeDocumentReducer', 'documentsReducer', 'uistateReducer'], true),
+        localStorageSync(['user',
+          'activeDocumentReducer',
+          'documentsReducer',
+          'uistateReducer',
+          'documentHistoryReducer'], true),
         combineReducers
       )({
         documents: documentsReducer,
         activeDocument: activeDocumentReducer,
         user: userReducer,
-        uistate: uistateReducer
+        uistate: uistateReducer,
+        history: documentHistoryReducer
       })
     )
 

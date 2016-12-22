@@ -15,6 +15,9 @@ export const ActionTypes = {
   DELETE_DOCUMENT: 'DELETE_DOCUMENT',
   GET_DOCUMENTS:  'GET_DOCUMENTS',
 
+  PUSH_DOCUMENT_ON_HISTORY: 'PUSH_DOCUMENT_ON_HISTORY',
+  CLEAR_HISTORY: 'CLEAR_HISTORY',
+
   UPDATE_EDIT_TEXT: 'UPDATE_EDIT_TEXT',
   SET_EDIT_TEXT:  'SET_EDIT_TEXT',
 
@@ -32,12 +35,16 @@ export const ActionTypes = {
 
 ***/
 
+// UNUSED //
+
 
 export function setDocumentsAndSelect(payload): Action {
 
   return { type: ActionTypes.SET_DOCUMENTS_AND_SELECT, payload: payload }
 
 }
+
+// APP //
 
 export function clearAll(): Action {
 
@@ -46,7 +53,7 @@ export function clearAll(): Action {
 }
 
 
-
+// DOCUMENTS //
 
 export function selectDocument(payload): Action {
 
@@ -96,6 +103,9 @@ export function getDocuments(): Action {
 
 }
 
+
+// EDITOR ??
+
 export function updateEditText(payload): Action {
 
   return { type: ActionTypes.UPDATE_EDIT_TEXT, payload: payload }
@@ -108,11 +118,16 @@ export function setEditText(payload): Action {
 
 }
 
+
+// UISTATE //
+
 export function updateNavState(payload): Action {
 
   return { type: ActionTypes.UPDATE_NAV_STATE, payload: payload }
 
 }
+
+// AUTHORIZATION //
 
 export function authorizeUser(payload): Action {
 
@@ -121,5 +136,19 @@ export function authorizeUser(payload): Action {
 }
 
 
+// HISTORY //
+
+
+export function pushDocumentOnHistory(payload): Action {
+
+  return { type: ActionTypes.PUSH_DOCUMENT_ON_HISTORY, payload: payload }
+
+}
+
+export function clearHistory(payload): Action {
+
+  return { type: ActionTypes.CLEAR_HISTORY, payload: payload }
+
+}
 
 

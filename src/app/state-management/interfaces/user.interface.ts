@@ -8,7 +8,8 @@ export interface User {
   token: string
   signedIn: boolean
   last_document_id: number
-  last_document_title: string
+  last_document_title: string,
+  action: string
 };
 
 export const initialUser:User = {
@@ -19,6 +20,7 @@ export const initialUser:User = {
   token: '',
   signedIn: false,
   last_document_id: -1,
-  last_document_title: 'Whatever'
+  last_document_title: 'Whatever',
+  action: 'none'
 
 }

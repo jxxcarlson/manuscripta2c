@@ -9,6 +9,7 @@ export interface AppState{
   uistate: UIState
 
   documents: Document[]
+  documentHistory: Document[]
   activeDocument: Document
 
   editor: Editor
@@ -26,6 +27,7 @@ export const initialAppState = {
   user: initialUser,
   uistate: initialUIState,
   documents: [],
+  documentHistory: [],
   activeDocument: initialDocument,
   editor: initialEditState
 

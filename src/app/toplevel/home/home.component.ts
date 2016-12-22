@@ -6,6 +6,7 @@ import {DocumentService} from '../../services/document.service'
 import { Store } from '@ngrx/store';
 import { User } from '../../state-management/interfaces/user.interface'
 import { Observable} from 'rxjs/Rx';
+import { pushDocumentOnHistory, clearHistory } from '../../state-management/reducers/action.types'
 
 
 @Component({
@@ -21,12 +22,14 @@ export class HomeComponent implements OnInit {
   lastDocumentTitle$: Observable<string>
 
   constructor(private navbarService: NavbarService,
-              private userStore: Store<AppState>,
+              private store: Store<any>,
+              private historyStore: Store<History>,
               private router: Router,
               private documentService: DocumentService) {
 
     this.navbarService = navbarService
-    this.userStore = userStore
+    this.store = store
+    //this.historyStore = store.select('history')
 
   }
 
@@ -37,20 +40,43 @@ export class HomeComponent implements OnInit {
 
   gotoLastDocument() {
 
-    this.userStore
+    this.store
       .take(1)
-      .subscribe(state => this.router.navigateByUrl(`/documents/${state.user.last_document_id}`))
+      .subscribe(state => [
+        console.log(`In gotoLastDocument, state.history = ${JSON.stringify(state.history)}`),
+        this.store.dispatch(pushDocumentOnHistory(state.history.historyList[0])),
+        this.router.navigateByUrl(`/documents/${state.history.historyList[0].id}`)
+      ])
+
+
+    //.subscribe(state => this.router.navigateByUrl(`/documents/${state.user.last_document_id}`))
   }
 
   ngOnInit() {
 
-    this.user$ = this.userStore.select(state => state.user)
-    this.lastDocumentTitle$ = this.userStore.select(state => state.user.last_document_title)
-    this.signedIn$ = this.userStore.select(state => state.user.signedIn)
+    this.user$ = this.store.select(state => state.user)
+
+
+    this.user$
+      .take(1)
+      .subscribe(user => {
+        if(!user.signedIn) { [
+            console.log(`User not signed in, pushing ${user.last_document_title} onto history`),
+            this.store.dispatch(pushDocumentOnHistory(
+              {title: user.last_document_title, id: user.last_document_id, foo: 'home.2'}))
+          ]
+      }})
+
+
+
+
+    // this.lastDocumentTitle$ = this.store.select(state => state.history.historyList[0].title)
+    this.lastDocumentTitle$ = this.store.select(state => (state.history.historyList == undefined) ? '--': state.history.historyList[0].title)
+    this.signedIn$ = this.store.select(state => state.user.signedIn)
 
     this.navbarService.updateUIState('home')
 
-    this.userStore
+    this.store
       .select('user')
       .subscribe((val: Observable<User>)=> [
         this.user$ = val,

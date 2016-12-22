@@ -36,7 +36,8 @@ export class AuthorizationService {
                 token: payload.token,
                 signedIn: payload.token != null,
                 last_document_id: payload.last_document_id,
-                last_document_title: payload.last_document_title
+                last_document_title: payload.last_document_title,
+                action: 'signin'
               })))
   }
 
@@ -55,8 +56,10 @@ export class AuthorizationService {
               {
                 username: username, password: password,
                 id: payload.user_id, token: payload.token,
-                signedIn: payload.token != null
-              }))
+                signedIn: payload.token != null,
+                action: 'signup'
+              }
+              ))
       ])
 
   }
@@ -72,11 +75,10 @@ export class AuthorizationService {
       token: '',
       signedIn: false,
       last_document_id: -1,
-      last_document_title: 'Whatever'
+      last_document_title: 'Whatever',
+      action: 'signout'
     }
 
-
-    this.store.dispatch(clearAll())
     this.store.dispatch(authorizeUser(nullUser))
 
   }

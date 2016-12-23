@@ -2,6 +2,10 @@
  import { Store } from '@ngrx/store'
  import 'rxjs/add/operator/take'
  import {UIState} from "../../state-management/interfaces/uistate.interface";
+ import {User} from "../../state-management/interfaces/user.interface";
+ import {AppState} from "../../state-management/interfaces/appstate.interface";
+
+
  import {updateSearchScope} from "../../state-management/reducers/action.types";
  import {Observable} from "rxjs";
 
@@ -16,19 +20,22 @@ export class SearchScopeControlComponent implements OnInit {
   selectedOption:Options = new Options(1, 'My docs');
 
   searchScope$: Observable<string>
+  user$: Observable<User>
 
   map = { 1: 'mydocs', 2: 'otherdocs', 3: 'alldocs' }
   inverseMap = { 'mydocs':0, 'otherdocs':1, 'alldocs':2 }
 
   options = [
     new Options(1, 'My docs' ),
-    new Options(2, 'Other' ),
+    new Options(2, 'Public' ),
     new Options(3, 'All' ),
   ];
 
-  constructor (private uistore: Store<UIState>) {
+  constructor (private uistore: Store<UIState>,
+              private store: Store<AppState>) {
 
     this.uistore = uistore
+    this.store = store
 
   }
 
@@ -46,6 +53,8 @@ export class SearchScopeControlComponent implements OnInit {
   ngOnInit() {
 
     this.searchScope$ = this.uistore.select(s => s.searchScope)
+
+    this.user$ = this.store.select(state => state.user)
 
 
     this.uistore

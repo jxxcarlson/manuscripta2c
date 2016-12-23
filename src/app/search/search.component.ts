@@ -27,6 +27,8 @@ export class SearchComponent implements OnInit {
 
   doSearch2(searchTerm: string, username: string, searchScope: string) {
 
+    if (username == 'nobody') { searchScope='publicdocs'}
+
     this.documentService.search(searchTerm, username, searchScope)
     if (this.target != 'default') {
 

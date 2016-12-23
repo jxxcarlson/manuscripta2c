@@ -22,8 +22,8 @@ export class SearchScopeControlComponent implements OnInit {
   searchScope$: Observable<string>
   user$: Observable<User>
 
-  map = { 1: 'mydocs', 2: 'otherdocs', 3: 'alldocs' }
-  inverseMap = { 'mydocs':0, 'otherdocs':1, 'alldocs':2 }
+  map = { 1: 'mydocs', 2: 'publicdocs', 3: 'alldocs' }
+  inverseMap = { 'mydocs':0, 'publicdocs':1, 'alldocs':2 }
 
   options = [
     new Options(1, 'My docs' ),

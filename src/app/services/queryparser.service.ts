@@ -9,7 +9,7 @@ export class QueryParser {
     var searchScopeMap = {
       'alldocs': `user.public=${username}`,
       'mydocs': `user=${username}`,
-      'otherdocs': `scope=public`
+      'publicdocs': `scope=public`
     }
 
     if (username != '') {

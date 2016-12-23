@@ -1,7 +1,7 @@
 export interface UIState {
 
   activeNavSection: string
-  searchScope: string // alldocs | mydocs | otherdocs
+  searchScope: string // alldocs | mydocs | publicdocs
 
 };
 

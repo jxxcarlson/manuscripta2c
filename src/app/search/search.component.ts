@@ -25,9 +25,9 @@ export class SearchComponent implements OnInit {
 
   }
 
-  doSearch(searchTerm: HTMLInputElement) {
+  doSearch2(searchTerm: string, username: string, searchScope: string) {
 
-    this.documentService.search(searchTerm.value)
+    this.documentService.search(searchTerm, username, searchScope)
     if (this.target != 'default') {
 
       // this.router.navigateByUrl(['/reader'])
@@ -37,6 +37,13 @@ export class SearchComponent implements OnInit {
 
     }
 
+  }
+
+  doSearch(searchTerm: HTMLInputElement) {
+
+    this.store
+      .take(1)
+      .subscribe(state => this.doSearch2(searchTerm.value, state.user.username, state.uistate.searchScope ))
   }
 
   ngOnInit() {

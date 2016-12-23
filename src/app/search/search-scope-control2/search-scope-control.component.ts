@@ -50,7 +50,7 @@ export class SearchScopeControlComponent implements OnInit {
 
     this.uistore
       .take(1)
-      .subscribe(state => this.selectedOption = this.options[this.getIndex(state)];
+      .subscribe(state => this.selectedOption = this.options[this.getIndex(state)]);
 
   }
 

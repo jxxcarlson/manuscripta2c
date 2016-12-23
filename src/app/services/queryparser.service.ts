@@ -4,7 +4,27 @@ export class QueryParser {
 
   constructor() {}
 
-  parse(userQuery: string): string {
+  parse(userQuery: string, username: string, searchScope: string): string {
+
+    var searchScopeMap = {
+      'alldocs': `user.public=${username}`,
+      'mydocs': `user=${username}`,
+      'otherdocs': `scope=public`
+    }
+
+    if (username != '') {
+
+      var searchScopePrefix: string = searchScopeMap[searchScope]
+
+    } else {
+
+      var searchScopePrefix: string = `scope=public`
+
+    }
+
+
+
+
 
     // var isStandardTerm = function(str) { return (str.includes('=')) }
     var isStandardTerm = function(str) { return (str.indexOf("=") > -1) }
@@ -54,6 +74,8 @@ export class QueryParser {
 
       apiQuery = bareSearchTerm + '&' + standardSearchTerm
     }
+
+    apiQuery = `${apiQuery}&${searchScopePrefix}`
 
     console.log('PARSED QUERY: ' + apiQuery)
 

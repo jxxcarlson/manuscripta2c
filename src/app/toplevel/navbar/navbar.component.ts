@@ -9,7 +9,8 @@ import { AppState } from '../../state-management/interfaces/appstate.interface';
 import { Store } from '@ngrx/store';
 import { UIState } from '../../state-management/interfaces/uistate.interface';
 
-import { uistateReducer, initialState } from '../../state-management/reducers/uistate.reducer'
+import { uistateReducer } from '../../state-management/reducers/uistate.reducer'
+import { initialUIState } from '../../state-management/interfaces/uistate.interface'
 
 @Component({
   selector: 'navbar',
@@ -59,7 +60,7 @@ export class NavbarComponent implements OnInit {
   getRandomDocuments() {
 
     let token = ''
-    this.documentService.search('random=10')
+    this.documentService.search('random=10', '', '')
     this.makeFirstDocumentActive()
     this.router.navigateByUrl('/read', { skipLocationChange: false });
     this.navbarService.updateUIState('read')
@@ -79,7 +80,7 @@ export class NavbarComponent implements OnInit {
 
     doIt() {
 
-      this.documentService.search('random=10')
+      this.documentService.search('random=10', '', '')
       console.log('OK Boss, I got the document')
   }
 

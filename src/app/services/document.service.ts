@@ -157,10 +157,10 @@ export class DocumentService {
 
   // Query the database and replace the current document list
   // with the results of the search
-  search (searchTerm: string): void {
+  search (searchTerm: string, username: string, searchScope:string): void {
 
     var qp: QueryParser = new QueryParser();
-    var apiQuery: string = qp.parse(searchTerm)
+    var apiQuery: string = qp.parse(searchTerm, username, searchScope)
     var url: string = `${this.apiRoot}/documents?${apiQuery}`
 
     this.store.select(state=> state.user.token)

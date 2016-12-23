@@ -1,13 +1,13 @@
 export interface UIState {
 
   activeNavSection: string
-  searchScope: string
+  searchScope: string // alldocs | mydocs | otherdocs
 
 };
 
 export const initialUIState =  {
 
   activeNavSection: 'read',
-  searchScope: 'all_docs'
+  searchScope: 'alldocs'
 
 }

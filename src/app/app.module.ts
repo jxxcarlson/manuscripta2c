@@ -46,7 +46,7 @@ import { ImagesComponent } from './images/images/images.component';
 import { AboutComponent } from './toplevel/about/about.component';
 import { SettingsComponent } from './toplevel/settings/settings.component';
 
-import { SearchScopeControlComponent } from './reader/search-scope-control2/search-scope-control.component';
+import { SearchScopeControlComponent } from './search/search-scope-control2/search-scope-control.component';
 
 // Application modules
 import {AuthorizationModule} from "./auth/authorization.module";

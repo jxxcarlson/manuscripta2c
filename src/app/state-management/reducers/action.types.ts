@@ -22,6 +22,7 @@ export const ActionTypes = {
   SET_EDIT_TEXT:  'SET_EDIT_TEXT',
 
   UPDATE_NAV_STATE:  'UPDATE_NAV_STATE',
+  UPDATE_SEARCH_SCOPE: 'UPDATE_SEARCH_SCOPE',
 
   AUTHORIZE_USER:  'AUTHORIZE_USER',
 
@@ -126,6 +127,14 @@ export function updateNavState(payload): Action {
   return { type: ActionTypes.UPDATE_NAV_STATE, payload: payload }
 
 }
+
+export function updateSearchScope(payload): Action {
+
+  return { type: ActionTypes.UPDATE_SEARCH_SCOPE, payload: payload }
+
+}
+
+
 
 // AUTHORIZATION //
 

@@ -9,7 +9,7 @@ import {initialDocument} from '../interfaces/document.interface'
 import {ActionReducer, Action} from '@ngrx/store';
 
 const identity = (text) => text
-const prepareSimplePageScroll = (text) => text.replace(/<a href="#/g, '<a simplePageScroll href="#')
+const prepareSimplePageScroll = (text) => text.replace(/<a href="#/g, '<a pageScroll href="#')
 
 const process_document = (document) =>
   Object.assign(document,  { rendered_text: prepareSimplePageScroll(document.rendered_text) })

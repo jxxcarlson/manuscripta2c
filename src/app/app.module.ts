@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {enableProdMode} from '@angular/core';
 
+import {Ng2SimplePageScrollModule} from 'ng2-simple-page-scroll'
 
 import {AppRoutingModule} from './app-routing.module'
 
@@ -76,6 +77,8 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    Ng2SimplePageScrollModule.forRoot(),
 
     // StoreModule.provideStore(appReducer, documentsReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),

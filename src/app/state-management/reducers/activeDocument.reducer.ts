@@ -18,7 +18,7 @@ export const activeDocumentReducer: ActionReducer<Document> = (state: Document =
 
   switch (action.type) {
     case ActionTypes.SELECT_DOCUMENT:
-      console.log(`PROCESSED PAYLOAD=${process_document(action.payload).rendered_text}`)
+      // console.log(`PROCESSED PAYLOAD=${process_document(action.payload).rendered_text}`)
       return process_document(action.payload);
     case ActionTypes.UPDATE_DOCUMENT:
       return Object.assign (state, process_document(action.payload))

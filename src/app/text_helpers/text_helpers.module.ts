@@ -1,6 +1,8 @@
 
 import { NgModule } from '@angular/core';
 
+import {SafePipe} from '../pipes/safe.pipe'
+
 import {FormsModule} from '@angular/forms';
 
 import { TextPageHeightDirective } from './textpageheight.directive'
@@ -14,6 +16,8 @@ import { TextAreaPane } from './textareapane.component'
 
 
   declarations: [
+
+    SafePipe,
 
     TextPageHeightDirective,
     MathJaxDirective,

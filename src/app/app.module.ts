@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {enableProdMode} from '@angular/core';
 
 import {Ng2SimplePageScrollModule} from 'ng2-simple-page-scroll'
+// https://github.com/bbottema/ng2-simple-page-scroll/issues
 
 import {AppRoutingModule} from './app-routing.module'
 

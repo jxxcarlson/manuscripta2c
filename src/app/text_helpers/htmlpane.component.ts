@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Pipe, Sanitizer } from '@angular/core';
 import { Document } from '../shared/document.model';
 
 @Component({
@@ -20,3 +20,5 @@ export class HtmlPane {
 }`]
 
  **/
+
+

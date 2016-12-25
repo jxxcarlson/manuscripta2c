@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Pipe } from '@angular/core';
 import { Document } from '../shared/document.model';
 
 @Component({
@@ -7,8 +7,7 @@ import { Document } from '../shared/document.model';
   <script type="text/x-mathjax-config">
         MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
     </script>
-<div class="rendered-document"  [mathJax]=document.rendered_text>{{document.rendered_text}}</div>`,
-  // styleUrls: ['./asciidoctor.css', './coderay.css', './extras.css', './anypane.component.css'],
+<div class="rendered-document"  [mathJax]=document.rendered_text>{{document.rendered_text | safe: 'html'}}</div>`,
   styleUrls: ['./anypane.component.css'],
   encapsulation: ViewEncapsulation.None // .Native, .Emulated
 })
@@ -19,3 +18,4 @@ export class MathJaxPane {
 
 
 //  styleUrls: ['./asciidoctor.css', './coderay.css', './extras.css', './anypane.component.css']
+// styleUrls: ['./asciidoctor.css', './coderay.css', './extras.css', './anypane.component.css'],

@@ -15,6 +15,7 @@ export class ImagesComponent implements OnInit {
 
   image$: Observable<Image>
   images$: Observable<Image[]>
+  tocInset:string = "100"  // used to set height of table of contents (TOC)
 
   constructor(private navbarService: NavbarService,
             private imageService: ImageService,

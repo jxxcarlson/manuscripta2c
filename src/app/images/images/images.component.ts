@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 import {NavbarService} from '../../toplevel/navbar/navbar.service'
 import {Image} from '../../state-management/interfaces/image.interface'
 import {AppState} from '../../state-management/interfaces/appstate.interface'
@@ -15,12 +16,13 @@ export class ImagesComponent implements OnInit {
 
   image$: Observable<Image>
   images$: Observable<Image[]>
-  tocInset:string = "100"  // used to set height of table of contents (TOC)
+  tocInset:string = "300"  // used to set height of table of contents (TOC)
 
   constructor(private navbarService: NavbarService,
             private imageService: ImageService,
             private imageStore: Store<any>,
-            private imagesStore: Store<any>) {
+            private imagesStore: Store<any>,
+            private router: Router) {
 
     this.navbarService = navbarService
     this.imageService = imageService
@@ -43,6 +45,28 @@ export class ImagesComponent implements OnInit {
   randomImages() {
 
     this.imageService.search('random=10', '', 'null')
+
   }
+
+  isActive(image, activeImage): boolean {
+
+    if ( image.id == activeImage.id) {
+
+      return true
+
+    } else {
+
+      return false
+    }
+
+  }
+
+  openImageUploader() {
+
+    this.router.navigateByUrl('/upload_image')
+
+
+  }
+
 
 }

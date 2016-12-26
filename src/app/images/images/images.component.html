@@ -6,11 +6,13 @@
   <div class="five wide column" style="">
 
     <div class="button-row">
-      <button>New</button>
+      <button (click)="openImageUploader()">New</button>
       <button (click)="randomImages()">Random</button>
     </div>
 
     <image-searchbar></image-searchbar>
+
+    <p style="margin-bottom:6px;margin-top:-3px;">{{ (images$ | async)?.length }} images</p>
 
     <div class="image-list">
 
@@ -21,6 +23,7 @@
 
                               *ngFor="let currentImage of (images$ | async)"
                               [image]="currentImage"
+                              [active]="isActive((image$ | async), currentImage)"
 
           >
           </image-list-item>
@@ -37,6 +40,7 @@
     <p style="margin-top:0.2rem; margin-bottom:1.4rem">{{(image$ | async)?.id}}:  {{(image$ | async)?.title}}</p>
 
   </div>
+
 
 </div>
 

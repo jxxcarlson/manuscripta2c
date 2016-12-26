@@ -1,0 +1,21 @@
+<div class="ui centered grid container">
+
+  <div class="five wide column" style="">
+
+      <h2 style="margin-bottom:1em;">Image/pdf Upload</h2>
+
+
+      <input id="filename" name="filename" size="200"  type="file" file />
+
+      <br/><br/>
+      <button (click)="upload(file)">Upload   </button>
+      <button (click)="cancel()">Cancel   </button>
+
+      <br><br>
+
+      <p><strong>Option: Attach to a new document</strong> <input class='floating-box check-box' id="attachToDocument" type="checkbox" ng-model="formData.attach" style="margin-top:12px;" /></p>
+
+
+    </div>
+
+</div>

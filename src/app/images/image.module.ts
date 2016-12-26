@@ -5,6 +5,7 @@ import {ImageService} from '../services/image_service'
 import {ImageListItemComponent} from './image-list-item/image-list-item.component'
 import {ImageSearchComponent} from './search/search.component'
 import {ImagesComponent} from './images/images.component'
+import {ImageUploadComponent} from './image-upload/image-upload.component'
 
 @NgModule ({
 
@@ -13,6 +14,7 @@ import {ImagesComponent} from './images/images.component'
     ImageListItemComponent,
     ImageSearchComponent,
     ImagesComponent,
+    ImageUploadComponent
 
   ],
 

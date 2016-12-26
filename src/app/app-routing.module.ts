@@ -11,6 +11,7 @@ import { EditorComponent } from './editor/editor/editor/editor.component'
 import { NewDocumentComponent } from './editor/new-document/new-document.component'
 import { ImagesComponent } from './images/images/images.component'
 import { SettingsComponent } from './toplevel/settings/settings.component'
+import { ImageUploadComponent} from './images/image-upload/image-upload.component'
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   { path: 'images', component: ImagesComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'newdocument', component: NewDocumentComponent},
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'upload_image', component: ImageUploadComponent}
 ];
 
 @NgModule({

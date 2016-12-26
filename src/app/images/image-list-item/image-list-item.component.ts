@@ -28,7 +28,7 @@ export class ImageListItemComponent implements OnInit {
 
   gotoImage(id) {
 
-    this.imageService.getImage(id)
+    this.imageService.getImage(id)  
 
   }
 

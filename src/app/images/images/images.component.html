@@ -5,17 +5,21 @@
 
   <div class="five wide column" style="">
 
-    <div [textPageHeight]="tocInset" class="document-list-inner">
+    <div class="image-list">
 
-      <ul class="">
-        <image-list-item class=""
+      <div [textPageHeight]="tocInset" class="image-list-inner">
 
-                            *ngFor="let currentImage of (images$ | async)"
-                            [image]="currentImage"
+        <ul class="">
+          <image-list-item class=""
 
-        >
-        </image-list-item>
-      </ul>
+                              *ngFor="let currentImage of (images$ | async)"
+                              [image]="currentImage"
+
+          >
+          </image-list-item>
+        </ul>
+      </div>
+
     </div>
 
   </div>

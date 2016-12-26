@@ -20,3 +20,16 @@ input[type=radio]:checked + span {
 input[type='radio'] {
   transform: scale(2);
 }
+
+
+
+.image-list {
+
+  background-color: #efefef; padding:10px; margin-right:27px;
+
+}
+
+.image-list-inner {
+
+  overflow: scroll;
+}

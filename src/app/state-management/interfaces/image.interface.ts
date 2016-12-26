@@ -2,7 +2,7 @@ export interface Image {
   id: number
   owner_id: number
   title: string
-  url: string
+  storage_url: string
   public: boolean
 
 }
@@ -12,8 +12,8 @@ export const initialImage: Image = {
   id: 58,
   owner_id: 39,
   title: 'Mountain bluebird',
-  url: 'http://psurl.s3.amazonaws.com/images/jc/Mountain_Bluebird-cc01.jpg',
-  public: true,
+  storage_url: 'http://psurl.s3.amazonaws.com/images/jc/Mountain_Bluebird-cc01.jpg',
+  public: true
 
 }
 

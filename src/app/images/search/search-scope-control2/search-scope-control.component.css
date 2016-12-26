@@ -1,0 +1,18 @@
+span {
+  margin-right: 0.65rem;
+  font-size: 1.2em;
+}
+
+.search-scope {
+
+  display: inline-block;
+  margin-bottom:3px;
+}
+
+input.radio {
+
+  margin-top:2px;
+  margin-right: 8px;
+  width: 15px;
+  height: 15px;
+}

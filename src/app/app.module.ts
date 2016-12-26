@@ -46,8 +46,8 @@ import { QueryParser } from './services/queryparser.service';
 import { AppComponent } from './toplevel/app/app.component';
 import { FooterComponent } from './toplevel/footer/footer.component';
 import { ReaderComponent } from './reader/reader/reader.component';
-import { ImagesComponent } from './images/images/images.component';
-import { ImageListItemComponent } from './images/image-list-item/image-list-item.component';
+// import { ImagesComponent } from './images/images/images.component';
+// import { ImageListItemComponent } from './images/image-list-item/image-list-item.component';
 
 import { AboutComponent } from './toplevel/about/about.component';
 import { SettingsComponent } from './toplevel/settings/settings.component';
@@ -72,8 +72,6 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     FooterComponent,
     ReaderComponent,
     AboutComponent,
-    ImagesComponent,
-    ImageListItemComponent,
     SearchScopeControlComponent,
     SettingsComponent,
     NewDocumentComponent,

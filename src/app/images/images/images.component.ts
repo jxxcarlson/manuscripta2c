@@ -40,4 +40,9 @@ export class ImagesComponent implements OnInit {
 
   }
 
+  randomImages() {
+
+    this.imageService.search('random=10', '', 'null')
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Image } from '../../state-management/interfaces/image.interface'
 import {ImageService} from '../../services/image_service'
- import { User } from '../../state-management/interfaces/user.interface'
+import { User } from '../../state-management/interfaces/user.interface'
 
 @Component({
   selector: 'image-list-item',
@@ -28,7 +28,7 @@ export class ImageListItemComponent implements OnInit {
 
   gotoImage(id) {
 
-    this.imageService.getImage(id)  
+    this.imageService.getImage(id)
 
   }
 

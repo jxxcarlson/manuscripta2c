@@ -5,9 +5,14 @@
 
   <div class="five wide column" style="">
 
-    <div class="image-list">
+    <div class="button-row">
+      <button>New</button>
+      <button (click)="randomImages()">Random</button>
+    </div>
 
-      <image-searchbar></image-searchbar>
+    <image-searchbar></image-searchbar>
+
+    <div class="image-list">
 
       <div [textPageHeight]="tocInset" class="image-list-inner">
 
@@ -29,6 +34,7 @@
   <div class="eleven wide column" style="">
 
     <img src="{{(image$ | async)?.storage_url}}">
+    <p style="margin-top:0.2rem; margin-bottom:1.4rem">{{(image$ | async)?.id}}:  {{(image$ | async)?.title}}</p>
 
   </div>
 

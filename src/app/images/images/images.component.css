@@ -33,3 +33,10 @@ input[type='radio'] {
 
   overflow: scroll;
 }
+
+
+.button-row {
+
+  margin-bottom: 8px;
+
+}

@@ -1,3 +1,30 @@
-<h3 style="margin-top:100px; margin-left:80px;">
- Media: under construction
-</h3>
+
+
+<div class="ui centered grid container">
+
+
+  <div class="five wide column" style="">
+
+    <div [textPageHeight]="tocInset" class="document-list-inner">
+
+      <ul class="">
+        <image-list-item class=""
+
+                            *ngFor="let currentImage of (images$ | async)"
+                            [image]="currentImage"
+
+        >
+        </image-list-item>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="eleven wide column" style="">
+
+    <img src="{{(image$ | async)?.storage_url}}">
+
+  </div>
+
+</div>
+

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {NavbarService} from '../../toplevel/navbar/navbar.service'
+import {Image} from '../../state-management/interfaces/image.interface'
+import {AppState} from '../../state-management/interfaces/appstate.interface'
+import {ImageService} from '../../services/image_service'
+import { Observable } from 'rxjs/Rx';
+import {Store} from '@ngrx/store'
 
 @Component({
   selector: 'app-images',
@@ -8,15 +13,29 @@ import {NavbarService} from '../../toplevel/navbar/navbar.service'
 })
 export class ImagesComponent implements OnInit {
 
-  constructor(private navbarService: NavbarService) {
+  image$: Observable<Image>
+  images$: Observable<Image[]>
+
+  constructor(private navbarService: NavbarService,
+            private imageService: ImageService,
+            private imageStore: Store<any>,
+            private imagesStore: Store<any>) {
 
     this.navbarService = navbarService
+    this.imageService = imageService
+    this.imageStore = imageStore
+    this.imagesStore = imagesStore
 
   }
 
   ngOnInit() {
 
     this.navbarService.updateUIState('media')
+    this.imageService.getImage(58)
+    this.imageService.search('random=10', '', 'null')
+    this.image$ = this.imageStore.select(s => s.activeImage)
+    this.images$ = this.imagesStore.select(s => s.images)
+
 
   }
 

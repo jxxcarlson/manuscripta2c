@@ -26,6 +26,11 @@ export const ActionTypes = {
 
   AUTHORIZE_USER:  'AUTHORIZE_USER',
 
+  SELECT_IMAGE:  'SELECT_IMAGE',
+  UPDATE_IMAGE:  'UPDATE_IMAGE',
+
+  SET_IMAGES: 'SET_IMAGES',
+
 }
 
 /***
@@ -161,3 +166,24 @@ export function clearHistory(payload): Action {
 }
 
 
+// ACTIVE IMAGE //
+
+export function selectImage(payload): Action {
+
+  return { type: ActionTypes.SELECT_IMAGE, payload: payload }
+
+}
+
+export function updateImage(payload): Action {
+
+  return { type: ActionTypes.UPDATE_IMAGE, payload: payload }
+
+}
+
+// IMAGES //
+
+export function setImages(payload): Action {
+
+  return { type: ActionTypes.SET_IMAGES, payload: payload }
+
+}

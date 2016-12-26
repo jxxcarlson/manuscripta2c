@@ -18,7 +18,7 @@ export class QueryParser {
 
     } else {
 
-      var searchScopePrefix: string = `scope=public`
+      var searchScopePrefix: string = 'null'
 
     }
 
@@ -75,7 +75,12 @@ export class QueryParser {
       apiQuery = bareSearchTerm + '&' + standardSearchTerm
     }
 
-    apiQuery = `${apiQuery}&${searchScopePrefix}`
+    if (searchScopePrefix != 'null') {
+
+      apiQuery = `${apiQuery}&${searchScopePrefix}`
+
+    }
+
 
     console.log('PARSED QUERY: ' + apiQuery)
 

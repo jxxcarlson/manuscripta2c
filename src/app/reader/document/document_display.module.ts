@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { DocumentComponent } from './document.component'
-
 import { TextHelpersModule } from '../../text_helpers/text_helpers.module'
 
 

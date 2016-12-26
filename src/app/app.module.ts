@@ -14,6 +14,8 @@ import { activeDocumentReducer } from './state-management/reducers/activeDocumen
 import { uistateReducer } from './state-management/reducers/uistate.reducer'
 import { userReducer } from './state-management/reducers/user.reducer'
 import { documentHistoryReducer } from './state-management/reducers/documentHistory.reducer'
+import { activeImageReducer } from './state-management/reducers/activeImageReducer'
+import { imagesReducer } from './state-management/reducers/images.reducer'
 
 import { Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -58,13 +60,14 @@ import {EditorModule} from "./editor/editor.module";
 import {DocumentDisplayModule} from './reader/document/document_display.module'
 import {DocumentListModule} from './reader/document-list/document-list.module'
 import {SearchModule} from './search/search.module';
+import {ImageModule}  from './images/image.module'
 import {TextHelpersModule} from './text_helpers/text_helpers.module';
 import { NewDocumentComponent } from './editor/new-document/new-document.component';
+import { ImageListItemComponent } from './images/image-list-item/image-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     FooterComponent,
     ReaderComponent,
     AboutComponent,
@@ -72,6 +75,7 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     SearchScopeControlComponent,
     SettingsComponent,
     NewDocumentComponent,
+    ImageListItemComponent,
   ],
 
   imports: [
@@ -93,6 +97,7 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
     NavbarModule,
     EditorModule,
     SearchModule,
+    ImageModule,
     TextHelpersModule,
 
     StoreModule.provideStore(
@@ -108,7 +113,9 @@ import { NewDocumentComponent } from './editor/new-document/new-document.compone
         activeDocument: activeDocumentReducer,
         user: userReducer,
         uistate: uistateReducer,
-        history: documentHistoryReducer
+        history: documentHistoryReducer,
+        activeImage: activeImageReducer,
+        images: imagesReducer
       })
     )
 

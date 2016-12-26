@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ImageService} from '../services/image_service'
 
 
-
 @NgModule ({
 
   declarations: [

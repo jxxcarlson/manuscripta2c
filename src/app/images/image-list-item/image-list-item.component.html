@@ -1,2 +1,5 @@
-<li><img width=200 src="{{image.storage_url}}"></li>
+<li>
+  <img (click)="gotoImage(image.id)"  width=200 src="{{image.storage_url}}">
+  <p style="margin-top:0.2rem; margin-bottom:1.4rem">{{image.id}}:  {{image.title}}</p>
+</li>
 

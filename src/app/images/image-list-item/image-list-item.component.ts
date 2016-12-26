@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Image } from '../../state-management/interfaces/image.interface'
+import {ImageService} from '../../services/image_service'
+ import { User } from '../../state-management/interfaces/user.interface'
 
 @Component({
   selector: 'image-list-item',
@@ -18,7 +20,15 @@ export class ImageListItemComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor( private imageService: ImageService ) {
+
+    this.imageService = imageService
+
+  }
+
+  gotoImage(id) {
+
+    this.imageService.getImage(id)
 
   }
 

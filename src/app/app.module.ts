@@ -47,6 +47,8 @@ import { AppComponent } from './toplevel/app/app.component';
 import { FooterComponent } from './toplevel/footer/footer.component';
 import { ReaderComponent } from './reader/reader/reader.component';
 import { ImagesComponent } from './images/images/images.component';
+import { ImageListItemComponent } from './images/image-list-item/image-list-item.component';
+
 import { AboutComponent } from './toplevel/about/about.component';
 import { SettingsComponent } from './toplevel/settings/settings.component';
 
@@ -63,7 +65,6 @@ import {SearchModule} from './search/search.module';
 import {ImageModule}  from './images/image.module'
 import {TextHelpersModule} from './text_helpers/text_helpers.module';
 import { NewDocumentComponent } from './editor/new-document/new-document.component';
-import { ImageListItemComponent } from './images/image-list-item/image-list-item.component';
 
 @NgModule({
   declarations: [
@@ -72,10 +73,10 @@ import { ImageListItemComponent } from './images/image-list-item/image-list-item
     ReaderComponent,
     AboutComponent,
     ImagesComponent,
+    ImageListItemComponent,
     SearchScopeControlComponent,
     SettingsComponent,
     NewDocumentComponent,
-    ImageListItemComponent,
   ],
 
   imports: [

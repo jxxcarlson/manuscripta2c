@@ -34,8 +34,8 @@ export class ImagesComponent implements OnInit {
   ngOnInit() {
 
     this.navbarService.updateUIState('media')
-    this.imageService.getImage(58)
-    this.imageService.search('random=10', '', 'null')
+    // this.imageService.getImage(58)
+    // this.imageService.search('random=10', '', 'null')
     this.image$ = this.imageStore.select(s => s.activeImage)
     this.images$ = this.imagesStore.select(s => s.images)
 

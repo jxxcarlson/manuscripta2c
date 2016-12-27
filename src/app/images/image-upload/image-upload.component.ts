@@ -18,7 +18,7 @@ export class ImageUploadComponent implements OnInit {
 
   upload() {
 
-    console.log(`UPLOAD file: ${file}`)
+    console.log(`UPLOAD file`)
 
   }
 

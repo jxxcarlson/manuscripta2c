@@ -33,7 +33,6 @@ import {WindowRef} from './services/windowRef'
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { appReducer } from './state-management/reducers/appReducer.reducer'
-import {StoreLogMonitorModule, useLogMonitor} from '@ngrx/store-log-monitor';
 import {provideStore} from '@ngrx/store';
 
 import { BrowserModule } from '@angular/platform-browser';
